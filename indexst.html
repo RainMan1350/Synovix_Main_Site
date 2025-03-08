@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Savings Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        input, select, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>AWS Savings Tool</h2>
+        <form id="uploadForm">
+            <label for="file">Upload CSV File:</label>
+            <input type="file" id="file" accept=".csv" required>
+
+            <label for="toolSelect">Select a Tool:</label>
+            <select id="toolSelect">
+                <option value="savings-tool">Savings Tool</option>
+                <option value="business-review">Business Review</option>
+                <option value="benchmarking-tool">Benchmarking Tool</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p id="status"></p>
+    </div>
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            document.getElementById("status").textContent = "Processing file... (AWS backend needed)";
+        });
+    </script>
+
+</body>
+</html>
