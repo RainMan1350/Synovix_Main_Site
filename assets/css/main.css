@@ -2276,7 +2276,7 @@ input, select, textarea {
 		}
 
 	body.homepage.is-preload #header:after {
-		opacity: 0;
+		opacity: 1;
 	}
 
 /* Nav */
@@ -2595,7 +2595,7 @@ input, select, textarea {
 			padding: 0 1em 3em 1em;
 			margin: 0 2em 0 0;
 			white-space: normal;
-			opacity: 0.0;
+			opacity: 1.0;
 			-moz-transition: opacity 0.75s ease-in-out;
 			-webkit-transition: opacity 0.75s ease-in-out;
 			-ms-transition: opacity 0.75s ease-in-out;
