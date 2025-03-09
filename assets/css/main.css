@@ -2328,7 +2328,7 @@ button:hover,
 			#nav > ul:before, #nav > ul:after {
 				content: '';
 				display: block;
-				width: 300%;
+				width: 150%;
 				position: absolute;
 				top: 50%;
 				margin-top: -2px;
