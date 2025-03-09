@@ -2188,19 +2188,6 @@ input, select, textarea {
     /* background-image: url("../../images/header.jpg"); */ /* Removed since we're using a video */
 }
 
-#header video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: cover;
-    z-index: -1;
-}
-
 		#header:before {
 			content: '';
 			display: inline-block;
