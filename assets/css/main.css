@@ -2319,10 +2319,10 @@ button:hover,
     display: flex;
     justify-content: center; /* Centers menu items */
     align-items: center;
-    gap: 15px; /* Spaces out menu items */
+    gap: 10px; /* Spaces out menu items */
     padding: 2.5px 10px;
     border-radius: 12.5px; /* Oval shape */
-    background: rgba(75, 0, 130, 0.8); /* Purple background */
+   /* background: rgba(75, 0, 130, 0.8); /* Purple background */ */
 }
 
 			#nav > ul:before, #nav > ul:after {
