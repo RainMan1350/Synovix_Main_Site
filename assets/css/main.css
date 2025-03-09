@@ -2048,37 +2048,35 @@ input, select, textarea {
 
 /* Button */
 
-	input[type="button"],
-	input[type="submit"],
-	input[type="reset"],
-	button,
-	.button {
-		position: relative;
-		display: inline-block;
-		background: #df7366;
-		color: #fff;
-		text-align: center;
-		border-radius: 0.5em;
-		text-decoration: none;
-		padding: 0.65em 3em 0.65em 3em;
-		border: 0;
-		cursor: pointer;
-		outline: 0;
-		font-weight: 300;
-		-moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
-		-webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
-		-ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
-		transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
-	}
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button,
+.button {
+    position: relative;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+    color: white !important; /* Ensures text is visible */
+    text-align: center;
+    border-radius: 30px; /* Makes button more rounded */
+    text-decoration: none;
+    padding: 0.75em 3.5em; /* Adjust padding for better proportions */
+    border: 2px solid white; /* Adds a white border for visibility */
+    cursor: pointer;
+    outline: 0;
+    font-weight: bold; /* Makes text bolder */
+    transition: all 0.3s ease-in-out;
+}
 
-		input[type="button"]:hover,
-		input[type="submit"]:hover,
-		input[type="reset"]:hover,
-		button:hover,
-		.button:hover {
-			color: #fff;
-			background: #ef8376;
-		}
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:hover,
+.button:hover {
+    color: #4B0082; /* Purple text when hovered */
+    background: white; /* Turns solid white on hover */
+    border: 2px solid #4B0082; /* Adds a purple border */
+}
 
 		input[type="button"].alt,
 		input[type="submit"].alt,
@@ -2219,10 +2217,13 @@ input, select, textarea {
 			display: inline-block;
 		}
 
-			#header header > p {
-				font-size: 1.25em;
-				margin: 0;
-			}
+#header header > p {
+    font-size: 1.5em;  /* Increases size for better visibility */
+    margin: 10px 0;
+    color: white;  /* Makes text visible over the video */
+    text-align: center;  /* Ensures text stays centered */
+    font-weight: 600; /* Makes text slightly bolder */
+}
 
 		#header h1 {
 			color: #fff;
@@ -2295,26 +2296,27 @@ input, select, textarea {
 
 /* Nav */
 
-	#nav {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		text-align: center;
-		padding: 1.5em 0 1.5em 0;
-		z-index: 1;
-		overflow: hidden;
-	}
+#nav {
+    position: absolute;
+    top: 20px; /* Moves the navbar slightly down */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the navbar */
+    background: rgba(75, 0, 130, 0.8); /* Purple background */
+    padding: 10px 30px;
+    border-radius: 50px; /* Oval shape */
+    z-index: 10; /* Ensures it stays above the video */
+}
 
-		#nav > ul {
-			line-height: 0px;
-			position: relative;
-			display: inline-block;
-			margin: 0;
-			height: 21px;
-			border-left: solid 1px rgba(192, 192, 192, 0.35);
-			border-right: solid 1px rgba(192, 192, 192, 0.35);
-		}
+#nav > ul {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centers menu items */
+    align-items: center;
+    gap: 20px; /* Spaces out menu items */
+    padding: 10px 30px;
+    border-radius: 50px; /* Oval shape */
+    background: rgba(75, 0, 130, 0.8); /* Purple background */
+}
 
 			#nav > ul:before, #nav > ul:after {
 				content: '';
@@ -2338,29 +2340,30 @@ input, select, textarea {
 				margin-right: 1px;
 			}
 
-			#nav > ul > li {
-				display: inline-block;
-				margin: -9px 0.5em 0 0.5em;
-				border-radius: 0.5em;
-				padding: 0.85em;
-				border: solid 1px transparent;
-				-moz-transition: color 0.35s ease-in-out, border-color 0.35s ease-in-out;
-				-webkit-transition: color 0.35s ease-in-out, border-color 0.35s ease-in-out;
-				-ms-transition: color 0.35s ease-in-out, border-color 0.35s ease-in-out;
-				transition: color 0.35s ease-in-out, border-color 0.35s ease-in-out;
-			}
+#nav > ul > li {
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 20px; /* Rounds each menu item */
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+}
 
 				#nav > ul > li.active {
 					border-color: rgba(192, 192, 192, 0.35);
 				}
 
-				#nav > ul > li > a, #nav > ul > li > span {
-					display: block;
-					color: inherit;
-					text-decoration: none;
-					border: 0;
-					outline: 0;
-				}
+#nav > ul > li > a {
+    display: block;
+    color: white !important; /* Makes text white */
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+#nav > ul > li > a:hover {
+    color: yellow; /* Highlight effect */
+}
 
 				#nav > ul > li > ul {
 					display: none;
