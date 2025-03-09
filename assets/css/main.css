@@ -2305,13 +2305,13 @@ button:hover,
 
 #nav {
     position: absolute;
-    top: 20px; /* Moves the navbar slightly down */
+    top: 10px; /* Moves the navbar slightly down */
     left: 50%;
     transform: translateX(-50%); /* Centers the navbar */
     background: rgba(75, 0, 130, 0.8); /* Purple background */
-    padding: 5px 20px;
-    border-radius: 30px; /* Oval shape */
-    z-index: 10; /* Ensures it stays above the video */
+    padding: 2.5px 10px;
+    border-radius: 15px; /* Oval shape */
+    z-index: 15; /* Ensures it stays above the video */
 }
 
 #nav > ul {
