@@ -2075,7 +2075,7 @@ input[type="reset"]:hover,
 button:hover,
 .button:hover {
     color: #4B0082; /* Purple text when hovered */
-    background: rgb(26, 1, 31); /* Turns solid white on hover */
+    background: rgb(103, 3, 123); /* Turns light purple on hover */
     border: 2px solid #4B0082; /* Adds a purple border */
 }
 
