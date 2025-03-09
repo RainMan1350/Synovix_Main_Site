@@ -2349,8 +2349,8 @@ button:hover,
 
 #nav > ul > li {
     display: inline-block;
-    padding: 10px 15px;
-    border-radius: 20px; /* Rounds each menu item */
+    padding: 5px 7.5px;
+    border-radius: 10px; /* Rounds each menu item */
     transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
 }
 
