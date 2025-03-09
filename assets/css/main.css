@@ -2055,7 +2055,7 @@ button,
 .button {
     position: relative;
     display: inline-block;
-    background: rgba(255, 255, 255, 0.2); /* Light transparent background */
+    background: rgba(15, 3, 58, 0.76); /* Light transparent background */
     color: white !important; /* Ensures text is visible */
     text-align: center;
     border-radius: 30px; /* Makes button more rounded */
@@ -2066,6 +2066,7 @@ button,
     outline: 0;
     font-weight: bold; /* Makes text bolder */
     transition: all 0.3s ease-in-out;
+    margin-top: 10px; /* moves button closer to text */
 }
 
 input[type="button"]:hover,
@@ -2205,13 +2206,17 @@ button:hover,
 			height: 100%;
 		}
 
-		#header .inner {
-			position: relative;
-			z-index: 1;
-			margin: 0;
-			display: inline-block;
-			vertical-align: middle;
-		}
+#header .inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 5;
+    width: 100%; /* Ensures content stays within the header */
+    max-width: 80%; /* Prevents text from stretching too wide */
+}
 
 		#header header {
 			display: inline-block;
@@ -2227,8 +2232,10 @@ button:hover,
 
 		#header h1 {
 			color: #fff;
-			font-size: 3em;
+			font-size: 3.5em;
 			line-height: 1em;
+            font-weight: bold;
+            margin-bottom: 10px;
 		}
 
 			#header h1 a {
@@ -2302,8 +2309,8 @@ button:hover,
     left: 50%;
     transform: translateX(-50%); /* Centers the navbar */
     background: rgba(75, 0, 130, 0.8); /* Purple background */
-    padding: 10px 30px;
-    border-radius: 50px; /* Oval shape */
+    padding: 5px 20px;
+    border-radius: 30px; /* Oval shape */
     z-index: 10; /* Ensures it stays above the video */
 }
 
@@ -2312,9 +2319,9 @@ button:hover,
     display: flex;
     justify-content: center; /* Centers menu items */
     align-items: center;
-    gap: 20px; /* Spaces out menu items */
-    padding: 10px 30px;
-    border-radius: 50px; /* Oval shape */
+    gap: 15px; /* Spaces out menu items */
+    padding: 5px 20px;
+    border-radius: 25px; /* Oval shape */
     background: rgba(75, 0, 130, 0.8); /* Purple background */
 }
 
@@ -3081,6 +3088,14 @@ button:hover,
 				#header h1 {
 					font-size: 1.75em;
 				}
+
+                #header p {
+    font-size: 1.5em; /* Makes text larger for better readability */
+    font-weight: 600; /* Slightly bold text */
+    margin: 10px 0; /* Adds spacing above/below */
+    color: white; /* Ensures visibility over video */
+    text-align: center; /* Keeps text centered */
+                }
 
 				#header hr {
 					top: 1em;
