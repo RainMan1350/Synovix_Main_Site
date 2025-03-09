@@ -2320,8 +2320,8 @@ button:hover,
     justify-content: center; /* Centers menu items */
     align-items: center;
     gap: 15px; /* Spaces out menu items */
-    padding: 5px 20px;
-    border-radius: 25px; /* Oval shape */
+    padding: 2.5px 10px;
+    border-radius: 12.5px; /* Oval shape */
     background: rgba(75, 0, 130, 0.8); /* Purple background */
 }
 
