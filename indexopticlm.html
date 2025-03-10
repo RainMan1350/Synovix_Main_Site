@@ -90,6 +90,7 @@
             <option selected>(Choose One)</option>
             <option value="contract">Contract</option>
             <option value="product">Product</option>
+	    <option value="Vendor">Vendor</option>
         </select>
         
         <button class="btn btn-primary mt-3" onclick="searchContract()">Search</button>
@@ -124,16 +125,54 @@
             return;
         }
 
-        // Simulating contract data response (replace with backend API later)
-        var contractData = {
-            contractName: "Surgical Equipment Agreement",
-            category: "Medical Devices",
-            accountRep: "John Doe - johndoe@example.com",
-            contractSummary: "Covers the supply of surgical devices. Includes bulk order discounts.",
-            expirationDate: "2025-06-15",
-            contractDocuments: ["Master Agreement.pdf", "Addendum_1.pdf"],
-            contractAlerts: "Contract expires in 90 days! Renewal required."
-        };
+// API Endpoint (replace with your AWS API endpoint)
+var apiUrl = "https://qs39722g41.execute-api.us-east-1.amazonaws.com"; // Example API URL
+
+// Request parameters for the API (can be query parameters, body data, etc.)
+var requestParams = {
+    method: 'GET', // or POST depending on the API
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 
+        searchInput: searchInput, 
+        searchType: searchType 
+    }) // Include this if the API needs a body with the request
+};
+
+// Make the API call
+fetch(apiUrl, requestParams)
+    .then(response => response.json()) // Convert response to JSON
+    .then(data => {
+        // Check if data is returned (you may want to handle no results here)
+        if (data) {
+            // Populating the contract details with API response data
+            document.getElementById("contractName").innerText = data.contractName;
+            document.getElementById("contractCategory").innerText = data.category;
+            document.getElementById("accountRep").innerText = data.accountRep;
+            document.getElementById("contractSummary").innerText = data.contractSummary;
+            document.getElementById("expirationDate").innerText = data.expirationDate;
+            document.getElementById("contractAlerts").innerText = data.contractAlerts;
+
+            // Populating contract documents
+            var docList = document.getElementById("contractDocuments");
+            docList.innerHTML = ""; // Clear previous entries
+            data.contractDocuments.forEach(doc => {
+                var li = document.createElement("li");
+                li.innerText = doc;
+                docList.appendChild(li);
+            });
+
+            // Display the contract details section
+            document.getElementById("contractDetails").style.display = "block";
+        } else {
+            alert("No contract found!");
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching contract data:', error);
+        alert("Failed to fetch contract data.");
+    });
 
         // Populating the contract details
         document.getElementById("contractName").innerText = contractData.contractName;
