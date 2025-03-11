@@ -3228,6 +3228,10 @@ input[type="tel"] {
     border-radius: 5px;
     width: 100%;
 }
+.container {
+    width: 100%;
+    max-width: none; /* Ensures full width for the rest of the page */
+}
 /* Submit Button */
 .contact-button {
     background: #4B0082;
