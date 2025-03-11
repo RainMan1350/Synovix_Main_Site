@@ -2308,6 +2308,69 @@ body:not(.homepage) #header {
 	body.homepage.is-preload #header:after {
 		opacity: 1;
 	}
+/* This ensures only the Contact Form is styled, not the whole page */
+.contact-form-container {
+    width: 600px; /* Set a smaller width */
+    margin: 50px auto; /* Center it horizontally */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.contact-form h2 {
+    text-align: center;
+}
+
+.contact-form .form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.contact-form .form-group div {
+    width: 48%;
+}
+
+.contact-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.contact-form .required {
+    color: red;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form textarea {
+    height: 80px;
+    resize: vertical;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.contact-form button:hover {
+    background-color: #0056b3;
+}
 
 /* Nav */
 
