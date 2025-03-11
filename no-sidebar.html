@@ -79,6 +79,91 @@
 									Our AI-powered platform is designed to simplify complex supply chain decisions. Whether you’re looking for cost-saving insights, contract optimization, or data-driven procurement strategies, our team is ready to guide you through the process. Connect with us to unlock smarter, more efficient operations.
 								</p>
 							</section>
+<section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        .required {
+            color: red;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Contact Us</h2>
+    <form action="submit_form.php" method="post">
+        
+        <label for="topic">Topic <span class="required">*</span></label>
+        <select id="topic" name="topic" required>
+            <option value="">Select a Topic</option>
+            <option value="support">Support</option>
+            <option value="sales">Sales</option>
+            <option value="feedback">Feedback</option>
+        </select>
+
+        <label for="first_name">First Name <span class="required">*</span></label>
+        <input type="text" id="first_name" name="first_name" required>
+
+        <label for="last_name">Last Name <span class="required">*</span></label>
+        <input type="text" id="last_name" name="last_name" required>
+
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(XXX) XXX-XXXX">
+
+        <label for="company">Company Name <span class="required">*</span></label>
+        <input type="text" id="company" name="company" required>
+
+        <label for="country">Country <span class="required">*</span></label>
+        <select id="country" name="country" required>
+            <option value="United States">United States</option>
+        </select>
+
+        <label for="state">State <span class="required">*</span></label>
+        <select id="state" name="state" required>
+            <option value="">Select a State</option>
+            <option value="AL">Alabama</option>
+            <option value="CA">California</option>
+            <option value="NY">New York</option>
+            <!-- Add other states as needed -->
+        </select>
+
+        <label for="message">Message <span class="required">*</span></label>
+        <textarea id="message" name="message" required></textarea>
+
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>							</section>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -163,6 +248,8 @@
 </div>
 
 </body>
+	</section>
+							
 						</article>
 						<hr />
 						<div class="row">
