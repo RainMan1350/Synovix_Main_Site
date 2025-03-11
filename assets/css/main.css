@@ -2186,6 +2186,14 @@ button:hover,
     /* background-image: url("../../images/header.jpg"); */ /* Removed since we're using a video */
 }
 
+body:not(.homepage) #header {
+    background: #4B0082; /* Change this to any color you want */
+    height: 150px; /* Adjust height for better spacing */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #header video {
     position: absolute;
     top: 50%;
