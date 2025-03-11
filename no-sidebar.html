@@ -79,90 +79,90 @@
 									Our AI-powered platform is designed to simplify complex supply chain decisions. Whether you’re looking for cost-saving insights, contract optimization, or data-driven procurement strategies, our team is ready to guide you through the process. Connect with us to unlock smarter, more efficient operations.
 								</p>
 							</section>
-<!-- Contact Form -->
-<section>
-    <header>
-        <h3>Contact Us</h3>
-    </header>
-    <form id="contact-form">
-        <!-- Row 1: Select a Topic -->
-        <div class="form-group full-width">
-            <label for="topic">Select a Topic:</label>
-            <select id="topic" name="topic">
-                <option value="customer-service">Customer Service Inquiry</option>
-                <option value="smart-tools">Learn More About Smart Tools</option>
-                <option value="opticlm">Learn More About OptiCLM</option>
-                <option value="specialist-academy">Learn More About Specialist Academy</option>
-                <option value="other">Other</option>
-            </select>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        .required {
+            color: red;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        textarea {
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
 
-        <!-- Row 2: First Name & Last Name -->
-        <div class="form-row">
-            <div class="form-group half-width">
-                <label for="first-name">First Name:</label>
-                <input type="text" id="first-name" name="first-name" required>
-            </div>
-            <div class="form-group half-width">
-                <label for="last-name">Last Name:</label>
-                <input type="text" id="last-name" name="last-name" required>
-            </div>
-        </div>
+<div class="container">
+    <h2>Contact Us</h2>
+    <form action="submit_form.php" method="post">
+        
+        <label for="topic">Topic <span class="required">*</span></label>
+        <select id="topic" name="topic" required>
+            <option value="">Select a Topic</option>
+            <option value="support">Support</option>
+            <option value="sales">Sales</option>
+            <option value="feedback">Feedback</option>
+        </select>
 
-        <!-- Row 3: Email Address & Phone Number -->
-        <div class="form-row">
-            <div class="form-group half-width">
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group half-width">
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" required>
-            </div>
-        </div>
+        <label for="first_name">First Name <span class="required">*</span></label>
+        <input type="text" id="first_name" name="first_name" required>
 
-        <!-- Row 4: Company Name -->
-        <div class="form-group full-width">
-            <label for="company">Company Name:</label>
-            <input type="text" id="company" name="company" required>
-        </div>
+        <label for="last_name">Last Name <span class="required">*</span></label>
+        <input type="text" id="last_name" name="last_name" required>
 
-        <!-- Row 5: Country & State -->
-        <div class="form-row">
-            <div class="form-group half-width">
-                <label for="country">Country of Origin:</label>
-                <select id="country" name="country" onchange="toggleStateField()">
-                    <option value="United States">United States</option>
-                    <option value="Canada">Canada</option>
-                    <option value="United Kingdom">United Kingdom</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <div class="form-group half-width">
-                <label for="state">State:</label>
-                <select id="state" name="state">
-                    <option value="">Select State</option>
-                    <option value="Alabama">Alabama</option>
-                    <option value="Alaska">Alaska</option>
-                    <option value="Arizona">Arizona</option>
-                    <option value="California">California</option>
-                    <option value="New York">New York</option>
-                    <option value="Texas">Texas</option>
-                </select>
-            </div>
-        </div>
+        <label for="email">Email Address <span class="required">*</span></label>
+        <input type="email" id="email" name="email" required>
 
-        <!-- Row 6: Your Message -->
-        <div class="form-group full-width">
-            <label for="message">Your Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-        </div>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(XXX) XXX-XXXX">
 
-        <!-- Submit Button -->
-        <button type="submit" class="contact-button">Submit</button>
+        <label for="company">Company Name <span class="required">*</span></label>
+        <input type="text" id="company" name="company" required>
+
+        <label for="country">Country <span class="required">*</span></label>
+        <select id="country" name="country" required>
+            <option value="United States">United States</option>
+        </select>
+
+        <label for="state">State <span class="required">*</span></label>
+        <select id="state" name="state" required>
+            <option value="">Select a State</option>
+            <option value="AL">Alabama</option>
+            <option value="CA">California</option>
+            <option value="NY">New York</option>
+            <!-- Add other states as needed -->
+        </select>
+
+        <label for="message">Message <span class="required">*</span></label>
+        <textarea id="message" name="message" required></textarea>
+
+        <br>
+        <button type="submit">Submit</button>
     </form>
-</section>
+</div>
+
+</body>
 						</article>
 						<hr />
 						<div class="row">
