@@ -2311,7 +2311,7 @@ button:hover,
     background: rgba(75, 0, 130, 0.8); /* Purple background */
     padding: 2.5px 10px;
     border-radius: 8px; /* Oval shape */
-    z-index: 15; /* Ensures it stays above the video */
+    z-index: 25; /* Ensures it stays above the video */
 }
 
 #nav > ul {
