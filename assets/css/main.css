@@ -3175,4 +3175,61 @@ body:not(.homepage) #header {
 						margin-bottom: 2em;
 					}
 
-	}
+/* Contact Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+/* Form Labels */
+label {
+    font-weight: bold;
+}
+
+/* Form Inputs */
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Form Rows */
+.form-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Two-Column Layout for Paired Fields */
+.form-group {
+    width: 50%;
+}
+
+/* Message Box */
+textarea {
+    height: 80px;
+}
+
+/* Submit Button */
+.contact-button {
+    background: #4B0082;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.contact-button:hover {
+    background: #3a006e;
+}
