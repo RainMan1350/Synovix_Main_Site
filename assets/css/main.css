@@ -3216,14 +3216,18 @@ input, select, textarea {
 
 /* Full-Width Fields */
 .full-width {
-    width: 100%;
+    width: 50%;
 }
 
 /* Message Box */
 textarea {
     height: 100px;
 }
-
+/* Fix Phone Number Field */
+input[type="tel"] {
+    border-radius: 5px;
+    width: 100%;
+}
 /* Submit Button */
 .contact-button {
     background: #4B0082;
