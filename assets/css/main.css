@@ -2187,7 +2187,7 @@ button:hover,
 }
 
 body:not(.homepage) #header {
-    background: #4B0082; /* Change this to any color you want */
+    background: #8454c4; /* Change this to any color you want */
     height: 150px; /* Adjust height for better spacing */
     display: flex;
     align-items: center;
