@@ -3179,7 +3179,7 @@ body:not(.homepage) #header {
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     background: #f4f4f4;
     padding: 20px;
     border-radius: 10px;
@@ -3190,6 +3190,8 @@ form {
 /* Form Labels */
 label {
     font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
 }
 
 /* Form Inputs */
@@ -3201,21 +3203,25 @@ input, select, textarea {
     border-radius: 5px;
 }
 
-/* Form Rows */
+/* Form Rows for Side-by-Side Fields */
 .form-row {
     display: flex;
     gap: 15px;
-    align-items: center;
 }
 
-/* Two-Column Layout for Paired Fields */
+/* Ensures Two Columns for Fields */
 .form-group {
     width: 50%;
 }
 
+/* Full-Width Fields */
+.full-width {
+    width: 100%;
+}
+
 /* Message Box */
 textarea {
-    height: 80px;
+    height: 100px;
 }
 
 /* Submit Button */
