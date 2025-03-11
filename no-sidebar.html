@@ -86,7 +86,7 @@
     </header>
     <form id="contact-form">
         <!-- Row 1: Select a Topic -->
-        <div class="form-row">
+        <div class="form-group full-width">
             <label for="topic">Select a Topic:</label>
             <select id="topic" name="topic">
                 <option value="customer-service">Customer Service Inquiry</option>
@@ -99,11 +99,11 @@
 
         <!-- Row 2: First Name & Last Name -->
         <div class="form-row">
-            <div class="form-group">
+            <div class="form-group half-width">
                 <label for="first-name">First Name:</label>
                 <input type="text" id="first-name" name="first-name" required>
             </div>
-            <div class="form-group">
+            <div class="form-group half-width">
                 <label for="last-name">Last Name:</label>
                 <input type="text" id="last-name" name="last-name" required>
             </div>
@@ -111,25 +111,25 @@
 
         <!-- Row 3: Email Address & Phone Number -->
         <div class="form-row">
-            <div class="form-group">
+            <div class="form-group half-width">
                 <label for="email">Email Address:</label>
                 <input type="email" id="email" name="email" required>
             </div>
-            <div class="form-group">
+            <div class="form-group half-width">
                 <label for="phone">Phone Number:</label>
                 <input type="tel" id="phone" name="phone" required>
             </div>
         </div>
 
         <!-- Row 4: Company Name -->
-        <div class="form-row">
+        <div class="form-group full-width">
             <label for="company">Company Name:</label>
             <input type="text" id="company" name="company" required>
         </div>
 
         <!-- Row 5: Country & State -->
         <div class="form-row">
-            <div class="form-group">
+            <div class="form-group half-width">
                 <label for="country">Country of Origin:</label>
                 <select id="country" name="country" onchange="toggleStateField()">
                     <option value="United States">United States</option>
@@ -139,7 +139,7 @@
                     <option value="Other">Other</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group half-width">
                 <label for="state">State:</label>
                 <select id="state" name="state">
                     <option value="">Select State</option>
@@ -154,7 +154,7 @@
         </div>
 
         <!-- Row 6: Your Message -->
-        <div class="form-row">
+        <div class="form-group full-width">
             <label for="message">Your Message:</label>
             <textarea id="message" name="message" rows="4" required></textarea>
         </div>
