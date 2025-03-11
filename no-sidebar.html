@@ -79,6 +79,84 @@
 									Our AI-powered platform is designed to simplify complex supply chain decisions. Whether you’re looking for cost-saving insights, contract optimization, or data-driven procurement strategies, our team is ready to guide you through the process. Connect with us to unlock smarter, more efficient operations.
 								</p>
 							</section>
+							<!-- Contact Form -->
+<section>
+    <header>
+        <h3>Contact Us</h3>
+    </header>
+    <form id="contact-form">
+        <!-- Topic Selection -->
+        <label for="topic">Select a Topic:</label>
+        <select id="topic" name="topic">
+            <option value="customer-service">Customer Service Inquiry</option>
+            <option value="smart-tools">Learn More About Smart Tools</option>
+            <option value="opticlm">Learn More About OptiCLM</option>
+            <option value="specialist-academy">Learn More About Specialist Academy</option>
+            <option value="other">Other</option>
+        </select>
+
+        <!-- First & Last Name Fields -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+        </div>
+
+        <!-- Email & Phone Number Fields -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+        </div>
+
+        <!-- Company Name Field -->
+        <label for="company">Company Name:</label>
+        <input type="text" id="company" name="company" required>
+
+        <!-- Country & State Fields -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="country">Country of Origin:</label>
+                <select id="country" name="country" onchange="toggleStateField()">
+                    <option value="United States">United States</option>
+                    <option value="Canada">Canada</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <select id="state" name="state">
+                    <option value="">Select State</option>
+                    <option value="Alabama">Alabama</option>
+                    <option value="Alaska">Alaska</option>
+                    <option value="Arizona">Arizona</option>
+                    <option value="California">California</option>
+                    <option value="New York">New York</option>
+                    <option value="Texas">Texas</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Message Box -->
+        <label for="message">Your Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <!-- Submit Button -->
+        <button type="submit" class="contact-button">Submit</button>
+    </form>
+</section>
 						</article>
 						<hr />
 						<div class="row">
