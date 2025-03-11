@@ -3203,14 +3203,14 @@ input, select, textarea {
     border-radius: 5px;
 }
 
-/* Form Rows for Side-by-Side Fields */
+/* Two-column Layout for Side-by-Side Fields */
 .form-row {
     display: flex;
     gap: 15px;
 }
 
-/* Ensures Two Columns for Fields */
-.form-group {
+/* Ensures Two Columns for Paired Fields */
+.half-width {
     width: 50%;
 }
 
