@@ -1,0 +1,23 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Dashboard</title>
+</head>
+<body>
+    <h1>Upload Your Data</h1>
+    <input type="file" id="fileUpload" />
+    <button onclick="uploadFile()">Upload</button>
+
+    <h2>View Your Dashboard</h2>
+    <iframe src="http://your-apache-superset-url.com" width="100%" height="600px"></iframe>
+
+    <script>
+        function uploadFile() {
+            alert("File uploaded! (Backend processing will be handled separately)");
+        }
+    </script>
+</body>
+</html>
