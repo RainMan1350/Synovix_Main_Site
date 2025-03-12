@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analytics Dashboard</title>
+    <title>Savings Tool Dashboard</title>
 </head>
 <body>
     <h1>Upload Your Data</h1>
-    <input type="file" id="fileUpload" />
-    <button onclick="uploadFile()">Upload</button>
-
-    <h2>View Your Dashboard</h2>
-    <iframe src="http://your-apache-superset-url.com" width="100%" height="600px"></iframe>
-
-    <script>
-        function uploadFile() {
-            alert("File uploaded! (Backend processing will be handled separately)");
-        }
-    </script>
+    <form id="uploadForm">
+        <label for="fileUpload">Choose a CSV file:</label>
+        <input type="file" id="fileUpload" accept=".csv" required>
+        <label for="analysisType">Choose Analysis Type:</label>
+        <select id="analysisType">
+            <option value="savings">Savings Tool</option>
+            <option value="business_review">Business Review</option>
+            <option value="benchmarking">Benchmarking Tool</option>
+        </select>
+        <button type="submit">Upload</button>
+    </form>
+    <div id="dashboard"></div>
+    <button id="download">Download Transformed Data</button>
 </body>
+<script>
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('File uploaded and processing started!');
+    });
+</script>
 </html>
