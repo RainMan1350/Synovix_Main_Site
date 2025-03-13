@@ -165,20 +165,64 @@
 </div>
 
 <script>
-    var demoContract = {
-        contractNumber: "123",
-        productCode: "abc",
-        contractName: "ABC Contract",
-        category: "Software",
-        accountRep: "John Doe",
-        contractSummary: "This contract governs the purchase of ABC software.",
-        expirationDate: "2025-03-15",
-        contractDocuments: ["Contract Document 1", "Contract Document 2"],
-        vendor: "ABC Corp.",
-        contactEmail: "johndoe@abccorp.com",
-        contactPhone: "123-456-7890",
-        contractAlerts: ""
-    };
+    var demoContracts = [
+        {
+            contractNumber: "123",
+            productCode: "abc",
+            contractName: "ABC Contract",
+            category: "Software",
+            accountRep: "John Doe",
+            contractSummary: "This contract governs the purchase of ABC software.",
+            expirationDate: "2025-03-15",
+            contractDocuments: ["Contract Document 1", "Contract Document 2"],
+            vendor: "ABC Corp.",
+            contactEmail: "johndoe@abccorp.com",
+            contactPhone: "123-456-7890",
+            contractAlerts: ""
+        },
+        {
+            contractNumber: "456",
+            productCode: "xyz",
+            contractName: "XYZ Contract",
+            category: "Hardware",
+            accountRep: "Jane Smith",
+            contractSummary: "This contract covers the procurement of XYZ hardware components.",
+            expirationDate: "2025-06-30",
+            contractDocuments: ["XYZ Agreement", "Warranty Details"],
+            vendor: "XYZ Technologies",
+            contactEmail: "janesmith@xyztech.com",
+            contactPhone: "987-654-3210",
+            contractAlerts: ""
+        },
+        {
+            contractNumber: "789",
+            productCode: "def",
+            contractName: "DEF Contract",
+            category: "Consulting",
+            accountRep: "Michael Johnson",
+            contractSummary: "Consulting services agreement with DEF Corp.",
+            expirationDate: "2024-12-01",
+            contractDocuments: ["DEF Consulting Terms", "Service Agreement"],
+            vendor: "DEF Corp.",
+            contactEmail: "michael@defcorp.com",
+            contactPhone: "555-123-4567",
+            contractAlerts: ""
+        },
+        {
+            contractNumber: "101",
+            productCode: "ghi",
+            contractName: "GHI Contract",
+            category: "Licensing",
+            accountRep: "Emily Davis",
+            contractSummary: "Software licensing contract for GHI applications.",
+            expirationDate: "2026-01-20",
+            contractDocuments: ["GHI License Terms", "Renewal Options"],
+            vendor: "GHI Solutions",
+            contactEmail: "emily@ghisolutions.com",
+            contactPhone: "111-222-3333",
+            contractAlerts: ""
+        }
+    ];
 
     function searchContract() {
         var searchInput = document.getElementById("searchInput").value;
@@ -189,15 +233,14 @@
             return;
         }
 
-        // If user selects 'contract' and enters contract number 123
-        if (searchType === "contract" && searchInput === demoContract.contractNumber) {
-            populateContractDetails(demoContract);
-        } 
-        // If user selects 'product' and enters product code abc
-        else if (searchType === "product" && searchInput === demoContract.productCode) {
-            populateContractDetails(demoContract);
-        } 
-        else {
+        var foundContract = demoContracts.find(contract => 
+            (searchType === "contract" && contract.contractNumber === searchInput) ||
+            (searchType === "product" && contract.productCode === searchInput)
+        );
+
+        if (foundContract) {
+            populateContractDetails(foundContract);
+        } else {
             alert("No matching contract or product found.");
         }
     }
