@@ -19,21 +19,49 @@
         <h1>Specialist Academy</h1>
         <p>Learn about various topics in a structured video format.</p>
         
-        <div class="video-grid">
-            <div class="video-card">
-                <h3>Site Navigation</h3>
-                <video src="videos/site-navigation.mp4" controls></video>
-            </div>
-            <div class="video-card">
-                <h3>Common Procedures</h3>
-                <video src="videos/common-procedures.mp4" controls></video>
-            </div>
-            <div class="video-card">
-                <h3>Data Analytics</h3>
-                <video src="videos/data-analytics.mp4" controls></video>
-            </div>
+        <!-- Video Grid (Dynamically populated) -->
+        <div class="video-grid" id="videoGrid">
+            <!-- Video cards will be dynamically inserted here -->
         </div>
     </section>
+
+    <script>
+        // Function to load videos from the AWS API
+        function loadVideos() {
+            var apiUrl = "https://your-api-url.amazonaws.com"; // Replace with your AWS API URL
+
+            fetch(apiUrl)
+                .then(response => response.json())  // Assuming the response is in JSON format
+                .then(data => {
+                    const videoGrid = document.getElementById('videoGrid');
+                    videoGrid.innerHTML = ''; // Clear any existing content
+
+                    // Loop through the returned video data and populate the page
+                    data.videos.forEach(video => {
+                        const videoCard = document.createElement('div');
+                        videoCard.classList.add('video-card');
+
+                        const videoTitle = document.createElement('h3');
+                        videoTitle.textContent = video.title;
+                        videoCard.appendChild(videoTitle);
+
+                        const videoElement = document.createElement('video');
+                        videoElement.src = video.url;
+                        videoElement.controls = true;
+                        videoCard.appendChild(videoElement);
+
+                        // Append the video card to the grid
+                        videoGrid.appendChild(videoCard);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching video data:', error);
+                });
+        }
+
+        // Load videos when the page loads
+        window.onload = loadVideos;
+    </script>
 
     <script src="script.js"></script>
 </body>
