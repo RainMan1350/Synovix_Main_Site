@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .dashboard {
+            background-color: white;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+        }
+
+        .filter-section input,
+        .filter-section select {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <div class="dashboard">
+        <h2>Dynamic Data Dashboard</h2>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <input type="text" id="filterInput" placeholder="Search Data...">
+            <select id="filterType">
+                <option value="all">All Data</option>
+                <option value="savings">Savings</option>
+                <option value="benchmarking">Benchmarking</option>
+            </select>
+            <button onclick="applyFilter()">Apply Filter</button>
+        </div>
+
+        <!-- Data Table -->
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Savings</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamically filled with data -->
+            </tbody>
+        </table>
+
+        <div class="chart-container">
+            <!-- Placeholder for dynamic chart (if needed in the future) -->
+            <h3>Chart Visualizations</h3>
+            <canvas id="chart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    function applyFilter() {
+        // Simulate applying a filter to the data (filter by name/category)
+        const filterValue = document.getElementById('filterInput').value;
+        const filterType = document.getElementById('filterType').value;
+        console.log('Filter Applied:', filterValue, filterType);
+
+        // Update table based on filter (this is just a simulation)
+        const tableBody = document.querySelector('#dataTable tbody');
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        // Example data (this would come from the uploaded file)
+        const data = [
+            { product: 'Product A', price: 100, savings: 20, category: 'savings' },
+            { product: 'Product B', price: 200, savings: 30, category: 'benchmarking' },
+            { product: 'Product C', price: 150, savings: 25, category: 'savings' }
+        ];
+
+        // Fill table with filtered data
+        data.forEach(item => {
+            if (filterType === 'all' || item.category === filterType) {
+                if (!filterValue || item.product.toLowerCase().includes(filterValue.toLowerCase())) {
+                    const row = `<tr>
+                        <td>${item.product}</td>
+                        <td>${item.price}</td>
+                        <td>${item.savings}</td>
+                        <td>${item.category}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
