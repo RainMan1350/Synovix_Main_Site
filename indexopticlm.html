@@ -125,19 +125,109 @@
         <button class="btn btn-search mt-3" onclick="searchContract()">Search</button>
     </div>
 
-    <!-- Contract Cards (Directory) -->
-    <div id="contractCards" class="row">
-        <!-- Demo Contract Card (Show contract list dynamically) -->
-        <div class="col-md-4">
-            <div class="contract-card" onclick="populateContractDetails(demoContract)">
-                <h5>ABC Contract</h5>
-                <p>Software Purchase Agreement</p>
-                <p>Expires in 30 days</p>
-            </div>
-        </div>
-        <!-- Add more cards dynamically -->
-    </div>
+  <!-- Contract Cards (Directory) -->
+<div id="contractCards" class="row">
+    <!-- Contract Cards will be added dynamically -->
+</div>
 
+<script>
+    var demoContracts = [
+        {
+            contractNumber: "123",
+            productCode: "abc",
+            contractName: "ABC Contract",
+            category: "Software",
+            accountRep: "John Doe",
+            contractSummary: "This contract governs the purchase of ABC software.",
+            expirationDate: "2025-03-15",
+            contractDocuments: ["Contract Document 1", "Contract Document 2"],
+            vendor: "ABC Corp.",
+            contactEmail: "johndoe@abccorp.com",
+            contactPhone: "123-456-7890",
+            contractAlerts: ""
+        },
+        {
+            contractNumber: "456",
+            productCode: "xyz",
+            contractName: "XYZ Contract",
+            category: "Hardware",
+            accountRep: "Jane Smith",
+            contractSummary: "This contract covers the procurement of XYZ hardware components.",
+            expirationDate: "2025-06-30",
+            contractDocuments: ["XYZ Agreement", "Warranty Details"],
+            vendor: "XYZ Technologies",
+            contactEmail: "janesmith@xyztech.com",
+            contactPhone: "987-654-3210",
+            contractAlerts: ""
+        },
+        {
+            contractNumber: "789",
+            productCode: "def",
+            contractName: "DEF Contract",
+            category: "Consulting",
+            accountRep: "Michael Johnson",
+            contractSummary: "Consulting services agreement with DEF Corp.",
+            expirationDate: "2024-12-01",
+            contractDocuments: ["DEF Consulting Terms", "Service Agreement"],
+            vendor: "DEF Corp.",
+            contactEmail: "michael@defcorp.com",
+            contactPhone: "555-123-4567",
+            contractAlerts: ""
+        },
+        {
+            contractNumber: "101",
+            productCode: "ghi",
+            contractName: "GHI Contract",
+            category: "Licensing",
+            accountRep: "Emily Davis",
+            contractSummary: "Software licensing contract for GHI applications.",
+            expirationDate: "2026-01-20",
+            contractDocuments: ["GHI License Terms", "Renewal Options"],
+            vendor: "GHI Solutions",
+            contactEmail: "emily@ghisolutions.com",
+            contactPhone: "111-222-3333",
+            contractAlerts: ""
+        }
+    ];
+
+    function populateContractCards() {
+        var contractContainer = document.getElementById("contractCards");
+        contractContainer.innerHTML = ""; // Clear existing content
+
+        demoContracts.forEach(contract => {
+            var card = document.createElement("div");
+            card.classList.add("col-md-4");
+
+            card.innerHTML = `
+                <div class="contract-card" onclick="populateContractDetails(${JSON.stringify(contract)})">
+                    <h5>${contract.contractName}</h5>
+                    <p>${contract.category} Agreement</p>
+                    <p>Expires on ${contract.expirationDate}</p>
+                </div>
+            `;
+
+            contractContainer.appendChild(card);
+        });
+    }
+
+    // Call the function to load contract cards on page load
+    document.addEventListener("DOMContentLoaded", populateContractCards);
+</script>
+
+<style>
+    .contract-card {
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 8px;
+        background: #f9f9f9;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-bottom: 15px;
+    }
+    .contract-card:hover {
+        background: #e9ecef;
+    }
+</style>
     <!-- Contract Details -->
     <div id="contractDetails" class="contract-details">
         <h4>Contract Information</h4>
