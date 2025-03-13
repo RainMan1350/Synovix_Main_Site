@@ -31,6 +31,10 @@
             background-color: #ffffff;
             margin-top: 10px;
         }
+        .alert {
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -48,7 +52,7 @@
             <option selected>(Choose One)</option>
             <option value="contract">Contract</option>
             <option value="product">Product</option>
-	    <option value="Vendor">Vendor</option>
+            <option value="vendor">Vendor</option>
         </select>
         
         <button class="btn btn-primary mt-3" onclick="searchContract()">Search</button>
@@ -69,7 +73,12 @@
         </ul>
         
         <h5>Alerts</h5>
-        <p id="contractAlerts" style="color: red; font-weight: bold;"></p>
+        <p id="contractAlerts" class="alert"></p>
+
+        <h5>Vendor Contact</h5>
+        <p><strong>Vendor:</strong> <span id="contractVendor"></span></p>
+        <p><strong>Contact Email:</strong> <span id="contactEmail"></span></p>
+        <p><strong>Contact Phone:</strong> <span id="contactPhone"></span></p>
     </div>
 </div>
 
@@ -83,54 +92,69 @@
             return;
         }
 
-        // API Endpoint (replace with your AWS API endpoint)
-        var apiUrl = "https://qs39722g41.execute-api.us-east-1.amazonaws.com"; // Example API URL
-
-        // Request parameters for the API (can be query parameters, body data, etc.)
-        var requestParams = {
-            method: 'GET', // or POST depending on the API
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 
-                searchInput: searchInput, 
-                searchType: searchType 
-            }) // Include this if the API needs a body with the request
+        // Demo contract data (contract 123 and product abc)
+        var demoContract = {
+            contractNumber: "123",
+            productCode: "abc",
+            contractName: "ABC Contract",
+            category: "Software",
+            accountRep: "John Doe",
+            contractSummary: "This contract governs the purchase of ABC software.",
+            expirationDate: "2025-03-15",
+            contractDocuments: ["Contract Document 1", "Contract Document 2"],
+            vendor: "ABC Corp.",
+            contactEmail: "johndoe@abccorp.com",
+            contactPhone: "123-456-7890",
+            contractAlerts: ""
         };
 
-        // Make the API call
-        fetch(apiUrl, requestParams)
-            .then(response => response.json()) // Convert response to JSON
-            .then(data => {
-                // Check if data is returned (you may want to handle no results here)
-                if (data) {
-                    // Populating the contract details with API response data
-                    document.getElementById("contractName").innerText = data.contractName;
-                    document.getElementById("contractCategory").innerText = data.category;
-                    document.getElementById("accountRep").innerText = data.accountRep;
-                    document.getElementById("contractSummary").innerText = data.contractSummary;
-                    document.getElementById("expirationDate").innerText = data.expirationDate;
-                    document.getElementById("contractAlerts").innerText = data.contractAlerts;
+        // If user selects 'contract' and enters contract number 123
+        if (searchType === "contract" && searchInput === demoContract.contractNumber) {
+            populateContractDetails(demoContract);
+        } 
+        // If user selects 'product' and enters product code abc
+        else if (searchType === "product" && searchInput === demoContract.productCode) {
+            populateContractDetails(demoContract);
+        } 
+        else {
+            alert("No matching contract or product found.");
+        }
+    }
 
-                    // Populating contract documents
-                    var docList = document.getElementById("contractDocuments");
-                    docList.innerHTML = ""; // Clear previous entries
-                    data.contractDocuments.forEach(doc => {
-                        var li = document.createElement("li");
-                        li.innerText = doc;
-                        docList.appendChild(li);
-                    });
+    function populateContractDetails(contract) {
+        document.getElementById("contractName").innerText = contract.contractName;
+        document.getElementById("contractCategory").innerText = contract.category;
+        document.getElementById("accountRep").innerText = contract.accountRep;
+        document.getElementById("contractSummary").innerText = contract.contractSummary;
+        document.getElementById("expirationDate").innerText = contract.expirationDate;
 
-                    // Display the contract details section
-                    document.getElementById("contractDetails").style.display = "block";
-                } else {
-                    alert("No contract found!");
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching contract data:', error);
-                alert("Failed to fetch contract data.");
-            });
+        // Contract Documents
+        var docList = document.getElementById("contractDocuments");
+        docList.innerHTML = ""; // Clear previous entries
+        contract.contractDocuments.forEach(doc => {
+            var li = document.createElement("li");
+            li.innerText = doc;
+            docList.appendChild(li);
+        });
+
+        // Vendor contact info
+        document.getElementById("contractVendor").innerText = contract.vendor;
+        document.getElementById("contactEmail").innerText = contract.contactEmail;
+        document.getElementById("contactPhone").innerText = contract.contactPhone;
+
+        // Check if the contract is about to expire (alert if it is)
+        var expirationDate = new Date(contract.expirationDate);
+        var currentDate = new Date();
+        var daysLeft = Math.floor((expirationDate - currentDate) / (1000 * 60 * 60 * 24));
+
+        if (daysLeft <= 30) {
+            document.getElementById("contractAlerts").innerText = "Alert: Contract is about to expire in " + daysLeft + " days!";
+        } else {
+            document.getElementById("contractAlerts").innerText = "";
+        }
+
+        // Display the contract details section
+        document.getElementById("contractDetails").style.display = "block";
     }
 </script>
 
