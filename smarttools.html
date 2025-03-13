@@ -131,9 +131,16 @@
     <script>
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
             event.preventDefault();
+
+            // Simulate uploading process
             alert('File uploaded and processing started!');
+
+            // Disable the download button initially
             document.getElementById('download').disabled = false;
             document.getElementById('alertBox').style.display = 'none';
+
+            // After file upload, redirect to another page (dynamic dashboard)
+            window.location.href = 'dashboard.html'; // Assuming the user will be taken to this page
         });
 
         document.getElementById('download').addEventListener('click', function() {
