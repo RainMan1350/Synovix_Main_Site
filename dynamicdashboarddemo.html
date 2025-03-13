@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Dashboard</title>
+    <title>Dynamic Tableau-like Dashboard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f4f7f9;
+            background: linear-gradient(135deg, #6e7bff, #4f77ff);
             margin: 0;
             padding: 0;
+            color: #fff;
         }
 
         .dashboard-container {
@@ -22,53 +23,124 @@
         }
 
         .dashboard {
-            background-color: white;
-            padding: 20px;
+            background-color: #ffffff;
+            padding: 30px;
             width: 100%;
-            max-width: 800px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            color: #333;
         }
 
         h2 {
             text-align: center;
             color: #333;
+            font-size: 2rem;
+        }
+
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-section input,
+        .filter-section select,
+        .filter-section button {
+            padding: 12px 18px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            background-color: #f0f4f7;
+            transition: 0.3s ease;
+        }
+
+        .filter-section input:focus,
+        .filter-section select:focus,
+        .filter-section button:hover {
+            background-color: #e2e7f1;
+        }
+
+        .chart-container {
+            margin-top: 40px;
+            text-align: center;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            font-size: 1rem;
+            table-layout: auto;
         }
 
         table, th, td {
             border: 1px solid #ddd;
+            border-radius: 5px;
         }
 
         th, td {
-            padding: 8px;
+            padding: 12px 15px;
             text-align: left;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #4f77ff;
+            color: white;
         }
 
-        .filter-section {
-            margin-bottom: 20px;
+        td {
+            background-color: #f9f9f9;
         }
 
-        .filter-section input,
-        .filter-section select {
-            padding: 10px;
-            margin: 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
+        tr:hover {
+            background-color: #f1f3f9;
         }
 
-        .chart-container {
-            margin-top: 30px;
+        .card {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-header {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card-content {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .card-content div {
             text-align: center;
+        }
+
+        .card-content span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .chart-container h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -80,13 +152,32 @@
 
         <!-- Filter Section -->
         <div class="filter-section">
-            <input type="text" id="filterInput" placeholder="Search Data...">
+            <input type="text" id="filterInput" placeholder="Search Data..." />
             <select id="filterType">
                 <option value="all">All Data</option>
                 <option value="savings">Savings</option>
                 <option value="benchmarking">Benchmarking</option>
             </select>
             <button onclick="applyFilter()">Apply Filter</button>
+        </div>
+
+        <!-- Summary Card Section -->
+        <div class="card">
+            <div class="card-header">Data Overview</div>
+            <div class="card-content">
+                <div>
+                    <span>50</span>
+                    <p>Total Products</p>
+                </div>
+                <div>
+                    <span>$120,000</span>
+                    <p>Total Savings</p>
+                </div>
+                <div>
+                    <span>10</span>
+                    <p>Benchmarking Items</p>
+                </div>
+            </div>
         </div>
 
         <!-- Data Table -->
@@ -104,8 +195,8 @@
             </tbody>
         </table>
 
+        <!-- Chart Section (Placeholder for future charts) -->
         <div class="chart-container">
-            <!-- Placeholder for dynamic chart (if needed in the future) -->
             <h3>Chart Visualizations</h3>
             <canvas id="chart"></canvas>
         </div>
