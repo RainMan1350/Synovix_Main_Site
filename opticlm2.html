@@ -30,91 +30,44 @@
         <h5>Documents</h5>
         <ul id="contractDocuments"></ul>
     </div>
-    <script>
-        let contracts = [
-            {
-                contractName: "Supply Agreement A",
-                category: "Supply",
-                accountRep: "John Doe",
-                contractSummary: "Agreement for medical supplies.",
-                expirationDate: "2025-06-30",
-                contractDocuments: ["Doc1.pdf", "Doc2.pdf"]
+<script>
+    function loadContracts() {
+        $.ajax({
+            url: "https://3bry03fvjg.execute-api.us-east-1.amazonaws.com/prod",
+            method: "GET",
+            success: function(response) {
+                var contracts = JSON.parse(response);
+                var contractContainer = $("#contractCards");
+                contractContainer.html(""); // Clear old data
+                
+                contracts.forEach(contract => {
+                    var card = `<div class="col-md-4">
+                        <div class="contract-card" onclick='showContractDetails(${JSON.stringify(contract)})'>
+                            <h5>${contract.contract_name}</h5>
+                            <p>${contract.category} Agreement</p>
+                            <p>Expires on ${contract.expiration_date}</p>
+                        </div>
+                    </div>`;
+                    contractContainer.append(card);
+                });
             },
-            {
-                contractName: "Service Agreement B",
-                category: "Service",
-                accountRep: "Jane Smith",
-                contractSummary: "Service contract for maintenance.",
-                expirationDate: "2024-04-15",
-                contractDocuments: ["Service_Terms.pdf"]
+            error: function() {
+                alert("Error loading contracts.");
             }
-        ];
-
-        function isExpiringSoon(expirationDate) {
-            let today = new Date();
-            let expDate = new Date(expirationDate);
-            let diffDays = (expDate - today) / (1000 * 60 * 60 * 24);
-            return diffDays <= 30;
-        }
-
-        function populateContractCards() {
-            let contractList = document.getElementById("contractList");
-            contractList.innerHTML = "";
-            contracts.forEach(contract => {
-                let card = document.createElement("div");
-                card.className = "col-md-4";
-                let highlightClass = isExpiringSoon(contract.expirationDate) ? "text-danger fw-bold" : "";
-                card.innerHTML = `
-                    <div class="contract-card" data-contract='${JSON.stringify(contract)}' onclick='populateContractDetails(this)'>
-                        <h5 class="${highlightClass}">${contract.contractName}</h5>
-                        <p>${contract.category} Agreement</p>
-                        <p>Expires on ${contract.expirationDate}</p>
-                    </div>
-                `;
-                contractList.appendChild(card);
-            });
-        }
-
-        function populateContractDetails(element) {
-            var contract = JSON.parse(element.getAttribute("data-contract"));
-            document.getElementById("contractName").innerText = contract.contractName;
-            document.getElementById("contractCategory").innerText = contract.category;
-            document.getElementById("accountRep").innerText = contract.accountRep;
-            document.getElementById("contractSummary").innerText = contract.contractSummary;
-            document.getElementById("expirationDate").innerText = contract.expirationDate;
-            var docsList = document.getElementById("contractDocuments");
-            docsList.innerHTML = "";
-            contract.contractDocuments.forEach(doc => {
-                let li = document.createElement("li");
-                li.innerText = doc;
-                docsList.appendChild(li);
-            });
-            document.getElementById("contractDetails").style.display = "block";
-        }
-
-        document.getElementById("searchBar").addEventListener("input", function () {
-            let searchValue = this.value.toLowerCase();
-            let filteredContracts = contracts.filter(contract =>
-                contract.contractName.toLowerCase().includes(searchValue) ||
-                contract.category.toLowerCase().includes(searchValue)
-            );
-            document.getElementById("contractList").innerHTML = "";
-            filteredContracts.forEach(contract => {
-                let card = document.createElement("div");
-                card.className = "col-md-4";
-                let highlightClass = isExpiringSoon(contract.expirationDate) ? "text-danger fw-bold" : "";
-                card.innerHTML = `
-                    <div class="contract-card" data-contract='${JSON.stringify(contract)}' onclick='populateContractDetails(this)'>
-                        <h5 class="${highlightClass}">${contract.contractName}</h5>
-                        <p>${contract.category} Agreement</p>
-                        <p>Expires on ${contract.expirationDate}</p>
-                    </div>
-                `;
-                document.getElementById("contractList").appendChild(card);
-            });
         });
+    }
 
-        populateContractCards();
-    </script>
+    function showContractDetails(contract) {
+        $("#contractName").text(contract.contract_name);
+        $("#contractCategory").text(contract.category);
+        $("#accountRep").text(contract.account_rep);
+        $("#contractSummary").text(contract.contract_summary);
+        $("#expirationDate").text(contract.expiration_date);
+        $("#contractDetails").show();
+    }
+
+    // Load contracts when the page loads
+    $(document).ready(loadContracts);
+</script>
 </body>
 </html>
