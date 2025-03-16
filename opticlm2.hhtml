@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .contract-card {
+            cursor: pointer;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body class="container mt-4">
+    <h2>Contract Management</h2>
+    <input type="text" id="searchBar" class="form-control mb-3" placeholder="Search Contracts...">
+    <div id="contractList" class="row"></div>
+    <div id="contractDetails" class="mt-4" style="display:none;">
+        <h3 id="contractName"></h3>
+        <p><strong>Category:</strong> <span id="contractCategory"></span></p>
+        <p><strong>Account Rep:</strong> <span id="accountRep"></span></p>
+        <p><strong>Summary:</strong> <span id="contractSummary"></span></p>
+        <p><strong>Expiration Date:</strong> <span id="expirationDate"></span></p>
+        <h5>Documents</h5>
+        <ul id="contractDocuments"></ul>
+    </div>
+    <script>
+        let contracts = [
+            {
+                contractName: "Supply Agreement A",
+                category: "Supply",
+                accountRep: "John Doe",
+                contractSummary: "Agreement for medical supplies.",
+                expirationDate: "2025-06-30",
+                contractDocuments: ["Doc1.pdf", "Doc2.pdf"]
+            },
+            {
+                contractName: "Service Agreement B",
+                category: "Service",
+                accountRep: "Jane Smith",
+                contractSummary: "Service contract for maintenance.",
+                expirationDate: "2024-04-15",
+                contractDocuments: ["Service_Terms.pdf"]
+            }
+        ];
+
+        function isExpiringSoon(expirationDate) {
+            let today = new Date();
+            let expDate = new Date(expirationDate);
+            let diffDays = (expDate - today) / (1000 * 60 * 60 * 24);
+            return diffDays <= 30;
+        }
+
+        function populateContractCards() {
+            let contractList = document.getElementById("contractList");
+            contractList.innerHTML = "";
+            contracts.forEach(contract => {
+                let card = document.createElement("div");
+                card.className = "col-md-4";
+                let highlightClass = isExpiringSoon(contract.expirationDate) ? "text-danger fw-bold" : "";
+                card.innerHTML = `
+                    <div class="contract-card" data-contract='${JSON.stringify(contract)}' onclick='populateContractDetails(this)'>
+                        <h5 class="${highlightClass}">${contract.contractName}</h5>
+                        <p>${contract.category} Agreement</p>
+                        <p>Expires on ${contract.expirationDate}</p>
+                    </div>
+                `;
+                contractList.appendChild(card);
+            });
+        }
+
+        function populateContractDetails(element) {
+            var contract = JSON.parse(element.getAttribute("data-contract"));
+            document.getElementById("contractName").innerText = contract.contractName;
+            document.getElementById("contractCategory").innerText = contract.category;
+            document.getElementById("accountRep").innerText = contract.accountRep;
+            document.getElementById("contractSummary").innerText = contract.contractSummary;
+            document.getElementById("expirationDate").innerText = contract.expirationDate;
+            var docsList = document.getElementById("contractDocuments");
+            docsList.innerHTML = "";
+            contract.contractDocuments.forEach(doc => {
+                let li = document.createElement("li");
+                li.innerText = doc;
+                docsList.appendChild(li);
+            });
+            document.getElementById("contractDetails").style.display = "block";
+        }
+
+        document.getElementById("searchBar").addEventListener("input", function () {
+            let searchValue = this.value.toLowerCase();
+            let filteredContracts = contracts.filter(contract =>
+                contract.contractName.toLowerCase().includes(searchValue) ||
+                contract.category.toLowerCase().includes(searchValue)
+            );
+            document.getElementById("contractList").innerHTML = "";
+            filteredContracts.forEach(contract => {
+                let card = document.createElement("div");
+                card.className = "col-md-4";
+                let highlightClass = isExpiringSoon(contract.expirationDate) ? "text-danger fw-bold" : "";
+                card.innerHTML = `
+                    <div class="contract-card" data-contract='${JSON.stringify(contract)}' onclick='populateContractDetails(this)'>
+                        <h5 class="${highlightClass}">${contract.contractName}</h5>
+                        <p>${contract.category} Agreement</p>
+                        <p>Expires on ${contract.expirationDate}</p>
+                    </div>
+                `;
+                document.getElementById("contractList").appendChild(card);
+            });
+        });
+
+        populateContractCards();
+    </script>
+</body>
+</html>
