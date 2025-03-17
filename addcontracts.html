@@ -13,7 +13,7 @@
       vendor: document.getElementById("vendor").value
     };
     
-    fetch("https://your-api-gateway-url/prod/contracts", {
+    fetch("https://3bry03fvjg.execute-api.us-east-1.amazonaws.com/prod", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contractData)
