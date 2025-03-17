@@ -1,0 +1,25 @@
+<form id="contractForm">
+  <input type="text" id="contractName" placeholder="Contract Name" required />
+  <input type="text" id="vendor" placeholder="Vendor Name" required />
+  <button type="submit">Add Contract</button>
+</form>
+
+<script>
+  document.getElementById("contractForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    const contractData = {
+      contractName: document.getElementById("contractName").value,
+      vendor: document.getElementById("vendor").value
+    };
+    
+    fetch("https://your-api-gateway-url/prod/contracts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(contractData)
+    })
+    .then(response => response.json())
+    .then(data => alert("Contract added successfully"))
+    .catch(error => console.error("Error:", error));
+  });
+</script>
