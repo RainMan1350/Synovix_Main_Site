@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600");
 @import url("fontawesome-all.min.css");
 
-
-
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -107,7 +105,7 @@ input, select, textarea {
 
 	h1, h2, h3, h4, h5, h6 {
 		font-weight: 400;
-		color:rgb(247, 0, 0);
+		color:rgba(53, 48, 48, 0.41);
 		line-height: 1.25em;
 	}
 
@@ -2070,9 +2068,9 @@ input[type="submit"]:hover,
 input[type="reset"]:hover,
 button:hover,
 .button:hover {
-    color: #1A5A67; /* Purple text when hovered */
-    background: rgb(11, 123, 3); 
-    border: 2px solid #1A5A67; /* Adds a purple border */
+    color: #0C333B; /* Purple text when hovered */
+    background: #1A5A67; 
+    border: 2px solid #0C333B; /* Adds a purple border */
 }
 
 		input[type="button"].alt,
@@ -2088,7 +2086,7 @@ button:hover,
 			input[type="reset"].alt:hover,
 			button.alt:hover,
 			.button.alt:hover {
-				background:rgb(86, 73, 202);
+				background: #1A5A67;
 			}
 
 /* Post */
@@ -2141,7 +2139,7 @@ button:hover,
 		.icon.circled {
 			position: relative;
 			display: inline-block;
-			background: #2b252c;
+			background: #1A5A67;
 			color: #fff;
 			border-radius: 100%;
 			width: 3em;
@@ -2275,7 +2273,7 @@ button:hover,
 
 		body.homepage #header:after {
 			content: '';
-			background: #1C0920;
+			background: #0C333B;
 			display: block;
 			position: absolute;
 			left: 0;
@@ -2304,7 +2302,7 @@ button:hover,
     top: 20px; /* Moves the navbar slightly down */
     left: 50%;
     transform: translateX(-50%); /* Centers the navbar */
-    background:rgb(1, 14, 17); /* Purple background */
+    background: #0C333B; /* Purple background */
     padding: 5px 20px;
     border-radius: 30px; /* Oval shape */
     z-index: 10; /* Ensures it stays above the video */
@@ -2318,7 +2316,7 @@ button:hover,
     gap: 15px; /* Spaces out menu items */
     padding: 2.5px 10px;
     border-radius: 12.5px; /* Oval shape */
-    background:rgb(1, 13, 15); /* Purple background */
+    background: #0C333B; /* Purple background */
 }
 
 			#nav > ul:before, #nav > ul:after {
@@ -2480,13 +2478,13 @@ button:hover,
 		position: relative;
 		overflow: hidden;
 		padding: 6em 0 6em 0;
-		background: #1A5A67;
+		background: #0C333B;
 		color: #fff;
 	}
 
 		#footer .icon.circled {
 			background: #fff;
-			color: #1A5A67;
+			color: #0C333B;
 		}
 
 		#footer header {
@@ -2509,17 +2507,17 @@ button:hover,
 
 		#footer .copyright {
 			text-align: center;
-			color: #E5C58F;
+			color:rgb(255, 254, 253);
 			font-size: 0.8em;
 			cursor: default;
 		}
 
 			#footer .copyright a {
-				color: #E5C58F;
+				color: rgb(255, 254, 253);
 			}
 
 				#footer .copyright a:hover {
-					color: #E5C58F;
+					color: rgb(255, 254, 253);
 				}
 
 /* Carousel */
