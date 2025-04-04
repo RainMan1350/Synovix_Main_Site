@@ -4,63 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procurement Marketplace</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background-color: #232f3e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .dropdowns {
+            display: flex;
+            gap: 15px;
+        }
+        .dropdowns select {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+        }
+        .header .help {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .help i {
+            margin-left: 5px;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .search-bar input {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .search-bar button {
+            padding: 10px 15px;
+            background-color: #ff9900;
+            border: none;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .marketplace {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .product-card {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product-card img {
+            width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+        }
+        .product-card h4 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .product-card p {
+            color: #666;
+            font-size: 14px;
+        }
+        .product-card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #b12704;
+        }
+        .product-card button {
+            background-color: #ff9900;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="top-bar">
-            <h1>Procurement Marketplace</h1>
-            <div class="user-options">
-                <select id="organization-select">
-                    <option>Org A</option>
-                    <option>Org B</option>
-                </select>
-                <select id="user-select">
-                    <option>User 1</option>
-                    <option>User 2</option>
-                </select>
-                <a href="help.html" class="help-icon">?</a>
-            </div>
+    <div class="header">
+        <div class="title">Procurement Marketplace</div>
+        <div class="dropdowns">
+            <select>
+                <option>Select Organization</option>
+                <option>Facility A</option>
+                <option>Facility B</option>
+            </select>
+            <select>
+                <option>Select User</option>
+                <option>User 1</option>
+                <option>User 2</option>
+            </select>
         </div>
-    </header>
-    
-    <nav class="sidebar">
-        <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Orders</a></li>
-            <li><a href="#">Invoices</a></li>
-            <li><a href="#">Supply Management</a></li>
-        </ul>
-    </nav>
-    
-    <main>
-        <div class="search-bar">
-            <input type="text" id="search" placeholder="Search by Part Number...">
-            <button onclick="searchItems()">Search</button>
+        <div class="help">Help <i class="fas fa-question-circle"></i></div>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search by Part Number...">
+        <button>Search</button>
+    </div>
+    <div class="marketplace">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Product">
+            <h4>Item 12345</h4>
+            <p>High-quality surgical gloves</p>
+            <div class="price">$12.99</div>
+            <button>Add to Cart</button>
         </div>
-        
-        <div class="marketplace">
-            <div class="product" data-part="12345">
-                <img src="item1.jpg" alt="Item 1">
-                <h3>Item 1</h3>
-                <p>$25.00</p>
-                <button>Add to Cart</button>
-            </div>
-            <div class="product" data-part="67890">
-                <img src="item2.jpg" alt="Item 2">
-                <h3>Item 2</h3>
-                <p>$40.00</p>
-                <button>Add to Cart</button>
-            </div>
-            <div class="product" data-part="54321">
-                <img src="item3.jpg" alt="Item 3">
-                <h3>Item 3</h3>
-                <p>$15.00</p>
-                <button>Add to Cart</button>
-            </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Product">
+            <h4>Item 67890</h4>
+            <p>Advanced wound dressing</p>
+            <div class="price">$25.50</div>
+            <button>Add to Cart</button>
         </div>
-    </main>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Product">
+            <h4>Item 11223</h4>
+            <p>Disposable syringes pack</p>
+            <div class="price">$8.75</div>
+            <button>Add to Cart</button>
+        </div>
+    </div>
 </body>
 </html>
