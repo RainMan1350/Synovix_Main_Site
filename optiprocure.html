@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procurement Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1>Procurement System</h1>
+            <div class="controls">
+                <select id="organization-selector">
+                    <option value="org1">Organization 1</option>
+                    <option value="org2">Organization 2</option>
+                </select>
+                <select id="user-selector">
+                    <option value="user1">User 1</option>
+                    <option value="user2">User 2</option>
+                </select>
+                <a href="customer_support.html" class="help-icon">❓</a>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="order-summary">
+            <div class="summary-box">Orders Placed: <span id="orders-placed">0</span></div>
+            <div class="summary-box">Awaiting Approval: <span id="awaiting-approval">0</span></div>
+            <div class="summary-box">Orders Fulfilled: <span id="orders-fulfilled">0</span></div>
+        </section>
+        
+        <nav class="tab-menu">
+            <button id="po-overview">PO Overview</button>
+            <button id="invoices-received">Invoices Received</button>
+            <button id="supply-management">Supply Management</button>
+        </nav>
+        
+        <section id="po-list">
+            <label for="po-filter">Filter: </label>
+            <select id="po-filter">
+                <option value="all">All</option>
+                <option value="placed">Placed</option>
+                <option value="fulfilled">Fulfilled</option>
+            </select>
+            <table>
+                <thead>
+                    <tr>
+                        <th>PO Number</th>
+                        <th>Date Placed</th>
+                        <th>Status</th>
+                        <th>Vendor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Purchase Order Data Will Be Populated Here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
