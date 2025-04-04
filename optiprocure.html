@@ -1,157 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procurement Marketplace</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-        }
-        .header {
-            background-color: #232f3e;
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header .title {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .header .dropdowns {
-            display: flex;
-            gap: 15px;
-        }
-        .dropdowns select {
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-        }
-        .header .help {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        .help i {
-            margin-left: 5px;
-        }
-        .search-bar {
-            display: flex;
-            justify-content: center;
-            padding: 15px;
-            background-color: white;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .search-bar input {
-            width: 50%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-        .search-bar button {
-            padding: 10px 15px;
-            background-color: #ff9900;
-            border: none;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .marketplace {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-        .product-card {
-            background: white;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .product-card img {
-            width: 100%;
-            max-height: 150px;
-            object-fit: contain;
-        }
-        .product-card h4 {
-            font-size: 16px;
-            margin: 10px 0;
-        }
-        .product-card p {
-            color: #666;
-            font-size: 14px;
-        }
-        .product-card .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #b12704;
-        }
-        .product-card button {
-            background-color: #ff9900;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Procurement Marketplace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    .header {
+      background-color: #232f3e;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    .header-title {
+      font-size: 24px;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    select, button {
+      padding: 6px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    .help-button {
+      background-color: #ffa41c;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .content {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #ffffff;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #232f3e;
+      padding: 10px 0;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .main {
+      flex-grow: 1;
+      padding: 30px;
+    }
+
+    .search-bar {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .search-bar button {
+      padding: 10px 15px;
+      background-color: #ffa41c;
+      border: none;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .marketplace {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      text-align: center;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .product-price {
+      color: #b12704;
+      font-weight: bold;
+    }
+
+    .product-buy {
+      margin-top: 10px;
+      background-color: #ffd814;
+      border: 1px solid #fcd200;
+      padding: 6px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="header">
-        <div class="title">Procurement Marketplace</div>
-        <div class="dropdowns">
-            <select>
-                <option>Select Organization</option>
-                <option>Facility A</option>
-                <option>Facility B</option>
-            </select>
-            <select>
-                <option>Select User</option>
-                <option>User 1</option>
-                <option>User 2</option>
-            </select>
-        </div>
-        <div class="help">Help <i class="fas fa-question-circle"></i></div>
+  <div class="header">
+    <div class="header-title">Procurement Marketplace</div>
+    <div class="header-controls">
+      <select>
+        <option>Organization A</option>
+        <option>Organization B</option>
+      </select>
+      <select>
+        <option>User A</option>
+        <option>User B</option>
+      </select>
+      <button class="help-button" title="Help">?</button>
     </div>
-    <div class="search-bar">
-        <input type="text" placeholder="Search by Part Number...">
+  </div>
+
+  <div class="content">
+    <div class="sidebar">
+      <a href="po-overview.html">Purchase Orders</a>
+      <a href="invoices.html">Invoices</a>
+      <a href="inventory.html">Inventory Management</a>
+    </div>
+
+    <div class="main">
+      <div class="search-bar">
+        <input type="text" placeholder="Search by item part number..." />
         <button>Search</button>
+      </div>
+
+      <div class="marketplace">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/150" alt="Item 1" />
+          <div class="product-title">Surgical Mask (Part #SM100)</div>
+          <div class="product-price">$25.00 / Box</div>
+          <button class="product-buy">Buy Now</button>
+        </div>
+        <div class="product-card">
+          <img src="https://via.placeholder.com/150" alt="Item 2" />
+          <div class="product-title">Nitrile Gloves (Part #NG200)</div>
+          <div class="product-price">$18.50 / Box</div>
+          <button class="product-buy">Buy Now</button>
+        </div>
+        <div class="product-card">
+          <img src="https://via.placeholder.com/150" alt="Item 3" />
+          <div class="product-title">Sterile Drapes (Part #SD300)</div>
+          <div class="product-price">$45.00 / Pack</div>
+          <button class="product-buy">Buy Now</button>
+        </div>
+        <div class="product-card">
+          <img src="https://via.placeholder.com/150" alt="Item 4" />
+          <div class="product-title">Syringe Pack (Part #SP400)</div>
+          <div class="product-price">$12.75 / Pack</div>
+          <button class="product-buy">Buy Now</button>
+        </div>
+      </div>
     </div>
-    <div class="marketplace">
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Product">
-            <h4>Item 12345</h4>
-            <p>High-quality surgical gloves</p>
-            <div class="price">$12.99</div>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Product">
-            <h4>Item 67890</h4>
-            <p>Advanced wound dressing</p>
-            <div class="price">$25.50</div>
-            <button>Add to Cart</button>
-        </div>
-        <div class="product-card">
-            <img src="https://via.placeholder.com/150" alt="Product">
-            <h4>Item 11223</h4>
-            <p>Disposable syringes pack</p>
-            <div class="price">$8.75</div>
-            <button>Add to Cart</button>
-        </div>
-    </div>
+  </div>
 </body>
+
 </html>
