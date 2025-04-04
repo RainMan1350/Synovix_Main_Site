@@ -4,138 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procurement Marketplace</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 90%;
-            margin: auto;
-            padding: 20px;
-        }
-        .header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header select, .header button {
-            padding: 8px;
-            margin-left: 10px;
-        }
-        .menu {
-            width: 200px;
-            background: #34495e;
-            color: white;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 60px;
-        }
-        .menu a {
-            display: block;
-            color: white;
-            padding: 15px;
-            text-decoration: none;
-        }
-        .menu a:hover {
-            background: #1abc9c;
-        }
-        .content {
-            margin-left: 220px;
-            padding: 20px;
-        }
-        .search-bar {
-            margin-bottom: 20px;
-        }
-        .marketplace {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        .item {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .item button {
-            background: #1abc9c;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-        .item button:hover {
-            background: #16a085;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="header">
-        <h1>Procurement Marketplace</h1>
-        <div>
-            <select>
-                <option>Select Organization</option>
-            </select>
-            <select>
-                <option>Select User</option>
-            </select>
-            <button onclick="window.location.href='help.html'"><i class="fas fa-question-circle"></i> Help</button>
+    <header>
+        <div class="top-bar">
+            <h1>Procurement Marketplace</h1>
+            <div class="user-options">
+                <select id="organization-select">
+                    <option>Org A</option>
+                    <option>Org B</option>
+                </select>
+                <select id="user-select">
+                    <option>User 1</option>
+                    <option>User 2</option>
+                </select>
+                <a href="help.html" class="help-icon">?</a>
+            </div>
         </div>
-    </div>
-    <div class="menu">
-        <a href="#">Dashboard</a>
-        <a href="#">Shop</a>
-        <a href="#">Inventory</a>
-        <a href="#" onclick="window.location.href='po_overview.html'">PO Overview</a>
-        <a href="#" onclick="window.location.href='supply_management.html'">Supply Management</a>
-    </div>
-    <div class="content">
+    </header>
+    
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">Orders</a></li>
+            <li><a href="#">Invoices</a></li>
+            <li><a href="#">Supply Management</a></li>
+        </ul>
+    </nav>
+    
+    <main>
         <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search by Part Number..." onkeyup="searchItems()">
+            <input type="text" id="search" placeholder="Search by Part Number...">
+            <button onclick="searchItems()">Search</button>
         </div>
-        <div class="marketplace" id="marketplace">
-            <div class="item" data-part="A123">
-                <h3>Item A123</h3>
-                <p>Description of Item A123</p>
+        
+        <div class="marketplace">
+            <div class="product" data-part="12345">
+                <img src="item1.jpg" alt="Item 1">
+                <h3>Item 1</h3>
+                <p>$25.00</p>
                 <button>Add to Cart</button>
             </div>
-            <div class="item" data-part="B456">
-                <h3>Item B456</h3>
-                <p>Description of Item B456</p>
+            <div class="product" data-part="67890">
+                <img src="item2.jpg" alt="Item 2">
+                <h3>Item 2</h3>
+                <p>$40.00</p>
                 <button>Add to Cart</button>
             </div>
-            <div class="item" data-part="C789">
-                <h3>Item C789</h3>
-                <p>Description of Item C789</p>
+            <div class="product" data-part="54321">
+                <img src="item3.jpg" alt="Item 3">
+                <h3>Item 3</h3>
+                <p>$15.00</p>
                 <button>Add to Cart</button>
             </div>
         </div>
-    </div>
-    <script>
-        function searchItems() {
-            let input = document.getElementById("searchInput").value.toUpperCase();
-            let items = document.getElementsByClassName("item");
-            for (let i = 0; i < items.length; i++) {
-                let part = items[i].getAttribute("data-part");
-                if (part.toUpperCase().indexOf(input) > -1) {
-                    items[i].style.display = "block";
-                } else {
-                    items[i].style.display = "none";
-                }
-            }
-        }
-    </script>
+    </main>
 </body>
 </html>
