@@ -3,32 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procurement Landing Page</title>
+    <title>Procurement System</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+        }
+        .sidebar a:hover {
+            background-color: #34495e;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ecf0f1;
+            padding: 10px 20px;
+            border-bottom: 2px solid #bdc3c7;
+        }
+        .controls select, .help-icon {
+            margin-left: 10px;
+        }
+        .order-summary {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .summary-box {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            width: 30%;
+        }
+        .tab-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: #ecf0f1;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .tab-menu button {
+            background-color: #2980b9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .tab-menu button:hover {
+            background-color: #1f6698;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+        }
+        th {
+            background-color: #95a5a6;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="banner">
-            <h1>Procurement System</h1>
-            <div class="controls">
-                <select id="organization-selector">
-                    <option value="org1">Organization 1</option>
-                    <option value="org2">Organization 2</option>
-                </select>
-                <select id="user-selector">
-                    <option value="user1">User 1</option>
-                    <option value="user2">User 2</option>
-                </select>
-                <a href="customer_support.html" class="help-icon">❓</a>
-            </div>
-        </div>
-    </header>
+    <div class="sidebar">
+        <h2>Navigation</h2>
+        <a href="#">Dashboard</a>
+        <a href="#">Shop</a>
+        <a href="#">Inventory</a>
+        <a href="#">Orders</a>
+        <a href="#">Reports</a>
+    </div>
     
-    <main>
+    <div class="main-content">
+        <header>
+            <div class="banner">
+                <h1>Procurement System</h1>
+                <div class="controls">
+                    <select id="organization-selector">
+                        <option value="org1">Organization 1</option>
+                        <option value="org2">Organization 2</option>
+                    </select>
+                    <select id="user-selector">
+                        <option value="user1">User 1</option>
+                        <option value="user2">User 2</option>
+                    </select>
+                    <a href="customer_support.html" class="help-icon">❓</a>
+                </div>
+            </div>
+        </header>
+        
         <section class="order-summary">
-            <div class="summary-box">Orders Placed: <span id="orders-placed">0</span></div>
-            <div class="summary-box">Awaiting Approval: <span id="awaiting-approval">0</span></div>
-            <div class="summary-box">Orders Fulfilled: <span id="orders-fulfilled">0</span></div>
+            <div class="summary-box">Orders Placed: <span id="orders-placed">10</span></div>
+            <div class="summary-box">Awaiting Approval: <span id="awaiting-approval">5</span></div>
+            <div class="summary-box">Orders Fulfilled: <span id="orders-fulfilled">7</span></div>
         </section>
         
         <nav class="tab-menu">
@@ -54,12 +144,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Purchase Order Data Will Be Populated Here -->
+                    <tr>
+                        <td><a href="#">PO12345</a></td>
+                        <td>2025-03-01</td>
+                        <td>Placed</td>
+                        <td>Vendor A</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">PO12346</a></td>
+                        <td>2025-03-02</td>
+                        <td>Fulfilled</td>
+                        <td>Vendor B</td>
+                    </tr>
+                    <tr>
+                        <td><a href="#">PO12347</a></td>
+                        <td>2025-03-03</td>
+                        <td>Awaiting Approval</td>
+                        <td>Vendor C</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
-    </main>
-    
-    <script src="script.js"></script>
+    </div>
 </body>
 </html>
