@@ -112,7 +112,7 @@
 <body>
 <div class="dashboard-container">
     <div class="dashboard">
-        <h2 style="text-align: center; color: #4f77ff;">Smart Tools Dashboard</h2>
+        <h2 style="text-align: center; color: #E55C3E;">Smart Tools Dashboard</h2>
 
         <div class="filter-section">
             <label for="toolFilter">Select Tool:</label>
@@ -236,7 +236,7 @@
     function updateVendorChart(data) {
         const ctx = document.getElementById("vendorChart").getContext("2d");
         const vendorTotals = {};
-        data.forEach(item => vendorTotals[item.vendor] = (vendorTotals[item.vendor] || 0) + item.spending);
+        data.forEach(item => vendorTotals[item.currentvendor] = (vendorTotals[item.currentvendor] || 0) + item.spending);
 
         new Chart(ctx, {
             type: "bar",
@@ -265,7 +265,7 @@
                 datasets: [{
                     label: "Savings Potential",
                     data: savingsData,
-                    backgroundColor: ["#4CAF50", "#FFC107", "#2196F3"], // Soft green, yellow, and blue
+                    backgroundColor: ["#BAD090", "#EBB42C", "#59A7A1"], // Soft green, yellow, and blue
                     borderColor: "#fff",
                     borderWidth: 1
                 }]
@@ -281,7 +281,7 @@
                 labels: ["Labor", "Supplies", "Equipment"],
                 datasets: [{
                     data: [40, 35, 25],
-                    backgroundColor: ["#4CAF50", "#FFC107", "#2196F3"], // Muted colors for breakdown
+                    backgroundColor: ["#BAD090", "#EBB42C", "#59A7A1"], // Muted colors for breakdown
                     borderColor: "#fff",
                     borderWidth: 1
                 }]
