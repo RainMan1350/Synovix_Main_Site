@@ -229,31 +229,21 @@
     }
 
     function populateTable(data) {
-const tableBody = document.getElementById("dataTableBody");
-
-spendingData.forEach(item => {
-    const row = document.createElement("tr");
-
-    row.innerHTML = `
-        <td>${item.date}</td>
-        <td>${item.currentvendor}</td>
-        <td>${item.newvendor}</td>
-        <td>${item.conversionordirect}</td>
-        <td>$${item.spending.toLocaleString()}</td>
-        <td>$${item.savings.toLocaleString()}</td>
-        <td>${item.contract}</td>
-    `;
-
-    // Create checkbox cell (visual only)
-    const checkboxCell = document.createElement("td");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.disabled = true; // Optional: make it unclickable if it's purely visual
-    checkboxCell.appendChild(checkbox);
-
-    row.appendChild(checkboxCell);
-    tableBody.appendChild(row);
-});
+        const tableBody = document.getElementById("dataTableBody");
+        tableBody.innerHTML = "";
+        data.forEach(item => {
+            const row = `<tr>
+                            <td>${item.date}</td>
+                            <td>${item.currentvendor}</td>
+                            <td>${item.newvendor}</td>
+                            <td>${item.conversionordirect}</td>
+                            <td>${item.spending}</td>
+                            <td>${item.savings}</td>
+                            <td>${item.contract}</td>
+                        </tr>`;
+            tableBody.innerHTML += row;
+        });
+    }
 
     function updateCharts(data) {
         updateSpendingChart(data);
