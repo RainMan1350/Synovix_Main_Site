@@ -154,9 +154,12 @@
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Vendor</th>
+                    <th>Current Vendor</th>
+                    <th>New Vendor</th>
+                    <th>Conversion or Direct</th>
                     <th>Spending ($)</th>
                     <th>Savings ($)</th>
+                    <th>Contract</th>
                 </tr>
             </thead>
             <tbody id="dataTableBody"></tbody>
@@ -166,11 +169,11 @@
 
 <script>
     const spendingData = [
-        { date: "2025-03-01", vendor: "Vendor A", spending: 10000, savings: 1500 },
-        { date: "2025-03-05", vendor: "Vendor B", spending: 15000, savings: 2000 },
-        { date: "2025-03-10", vendor: "Vendor C", spending: 12000, savings: 1800 },
-        { date: "2025-03-15", vendor: "Vendor A", spending: 14000, savings: 1700 },
-        { date: "2025-03-20", vendor: "Vendor B", spending: 16000, savings: 2200 }
+        { date: "2025-03-01", currentvendor: "Vendor A", newvendor: "Vendor Z", conversionordirect: "Conversion", spending: 10000, savings: 1500, contract: "XYZ" },
+        { date: "2025-03-05", currentvendor: "Vendor B",  newvendor: "Vendor X", conversionordirect: "Direct", spending: 15000, savings: 2000, contract: "ABC"  },
+        { date: "2025-03-10", currentvendor: "Vendor C",  newvendor: "Vendor Y", conversionordirect: "Conversion", spending: 12000, savings: 1800, contract: "XYZ"  },
+        { date: "2025-03-15", currentvendor: "Vendor A",  newvendor: "Vendor Z", conversionordirect: "Direct", spending: 14000, savings: 1700, contract: "ABC"  },
+        { date: "2025-03-20", currentvendor: "Vendor B",  newvendor: "Vendor X", conversionordirect: "Conversion", spending: 16000, savings: 2200, contract: "XYZ"  }
     ];
 
     function updateDashboard() {
