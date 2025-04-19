@@ -108,7 +108,7 @@
 <!-- Main Container -->
 <div class="container">
     <h2 class="text-center">OptiCLM - Contract Lifecycle Management</h2>
-    
+
     <!-- Search Bar -->
     <div class="search-section">
         <label for="searchInput">Search Contract, Product or Vendor:</label>
@@ -121,113 +121,15 @@
             <option value="product">Product</option>
             <option value="vendor">Vendor</option>
         </select>
-        
+
         <button class="btn btn-search mt-3" onclick="searchContract()">Search</button>
     </div>
 
-  <!-- Contract Cards (Directory) -->
-<div id="contractCards" class="row">
-    <!-- Contract Cards will be added dynamically -->
-</div>
+    <!-- Contract Cards (Directory) -->
+    <div id="contractCards" class="row">
+        <!-- Contract Cards will be added dynamically -->
+    </div>
 
-<script>
-    var demoContracts = [
-        {
-            contractNumber: "123",
-            productCode: "abc",
-            contractName: "ABC Contract",
-            category: "Software",
-            accountRep: "John Doe",
-            contractSummary: "This contract governs the purchase of ABC software.",
-            expirationDate: "2025-03-15",
-            contractDocuments: ["Contract Document 1", "Contract Document 2"],
-            vendor: "ABC Corp.",
-            contactEmail: "johndoe@abccorp.com",
-            contactPhone: "123-456-7890",
-            contractAlerts: ""
-        },
-        {
-            contractNumber: "456",
-            productCode: "xyz",
-            contractName: "XYZ Contract",
-            category: "Hardware",
-            accountRep: "Jane Smith",
-            contractSummary: "This contract covers the procurement of XYZ hardware components.",
-            expirationDate: "2025-06-30",
-            contractDocuments: ["XYZ Agreement", "Warranty Details"],
-            vendor: "XYZ Technologies",
-            contactEmail: "janesmith@xyztech.com",
-            contactPhone: "987-654-3210",
-            contractAlerts: ""
-        },
-        {
-            contractNumber: "789",
-            productCode: "def",
-            contractName: "DEF Contract",
-            category: "Consulting",
-            accountRep: "Michael Johnson",
-            contractSummary: "Consulting services agreement with DEF Corp.",
-            expirationDate: "2024-12-01",
-            contractDocuments: ["DEF Consulting Terms", "Service Agreement"],
-            vendor: "DEF Corp.",
-            contactEmail: "michael@defcorp.com",
-            contactPhone: "555-123-4567",
-            contractAlerts: ""
-        },
-        {
-            contractNumber: "101",
-            productCode: "ghi",
-            contractName: "GHI Contract",
-            category: "Licensing",
-            accountRep: "Emily Davis",
-            contractSummary: "Software licensing contract for GHI applications.",
-            expirationDate: "2026-01-20",
-            contractDocuments: ["GHI License Terms", "Renewal Options"],
-            vendor: "GHI Solutions",
-            contactEmail: "emily@ghisolutions.com",
-            contactPhone: "111-222-3333",
-            contractAlerts: ""
-        }
-    ];
-
-    function populateContractCards() {
-        var contractContainer = document.getElementById("contractCards");
-        contractContainer.innerHTML = ""; // Clear existing content
-
-        demoContracts.forEach(contract => {
-            var card = document.createElement("div");
-            card.classList.add("col-md-4");
-
-            card.innerHTML = `
-                <div class="contract-card" onclick="populateContractDetails(${JSON.stringify(contract)})">
-                    <h5>${contract.contractName}</h5>
-                    <p>${contract.category} Agreement</p>
-                    <p>Expires on ${contract.expirationDate}</p>
-                </div>
-            `;
-
-            contractContainer.appendChild(card);
-        });
-    }
-
-    // Call the function to load contract cards on page load
-    document.addEventListener("DOMContentLoaded", populateContractCards);
-</script>
-
-<style>
-    .contract-card {
-        border: 1px solid #ddd;
-        padding: 15px;
-        border-radius: 8px;
-        background: #f9f9f9;
-        cursor: pointer;
-        transition: 0.3s;
-        margin-bottom: 15px;
-    }
-    .contract-card:hover {
-        background: #e9ecef;
-    }
-</style>
     <!-- Contract Details -->
     <div id="contractDetails" class="contract-details">
         <h4>Contract Information</h4>
@@ -239,11 +141,9 @@
 
         <h5>Contract Documents</h5>
         <div class="contract-docs">
-            <ul id="contractDocuments">
-                <!-- Contract files will be listed here -->
-            </ul>
+            <ul id="contractDocuments"></ul>
         </div>
-        
+
         <h5>Alerts</h5>
         <p id="contractAlerts" class="alert"></p>
 
@@ -255,7 +155,7 @@
 </div>
 
 <script>
-    var demoContracts = [
+    const demoContracts = [
         {
             contractNumber: "123",
             productCode: "abc",
@@ -314,62 +214,75 @@
         }
     ];
 
-    function searchContract() {
-        var searchInput = document.getElementById("searchInput").value;
-        var searchType = document.getElementById("searchType").value;
+    function populateContractCards(contracts = demoContracts) {
+        const container = document.getElementById("contractCards");
+        container.innerHTML = "";
 
-        if (searchInput === "" || searchType === "(Choose One)") {
+        if (contracts.length === 0) {
+            container.innerHTML = "<p>No contracts found.</p>";
+            return;
+        }
+
+        contracts.forEach(contract => {
+            const card = document.createElement("div");
+            card.classList.add("col-md-4");
+            card.innerHTML = `
+                <div class="contract-card" onclick='populateContractDetails(${JSON.stringify(contract)})'>
+                    <h5>${contract.contractName}</h5>
+                    <p>${contract.category} Agreement</p>
+                    <p>Expires on ${contract.expirationDate}</p>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function populateContractDetails(contract) {
+        document.getElementById("contractName").textContent = contract.contractName;
+        document.getElementById("contractCategory").textContent = contract.category;
+        document.getElementById("accountRep").textContent = contract.accountRep;
+        document.getElementById("contractSummary").textContent = contract.contractSummary;
+        document.getElementById("expirationDate").textContent = contract.expirationDate;
+        document.getElementById("contractVendor").textContent = contract.vendor;
+        document.getElementById("contactEmail").textContent = contract.contactEmail;
+        document.getElementById("contactPhone").textContent = contract.contactPhone;
+        document.getElementById("contractAlerts").textContent = contract.contractAlerts || "No alerts.";
+
+        const docList = document.getElementById("contractDocuments");
+        docList.innerHTML = "";
+        contract.contractDocuments.forEach(doc => {
+            const li = document.createElement("li");
+            li.textContent = doc;
+            docList.appendChild(li);
+        });
+
+        document.getElementById("contractDetails").style.display = "block";
+        window.scrollTo({ top: document.getElementById("contractDetails").offsetTop, behavior: 'smooth' });
+    }
+
+    function searchContract() {
+        const input = document.getElementById("searchInput").value.toLowerCase();
+        const type = document.getElementById("searchType").value;
+
+        if (!input || type === "(Choose One)") {
             alert("Please enter a search term and select a search type.");
             return;
         }
 
-        var foundContract = demoContracts.find(contract => 
-            (searchType === "contract" && contract.contractNumber === searchInput) ||
-            (searchType === "product" && contract.productCode === searchInput)
-        );
-
-        if (foundContract) {
-            populateContractDetails(foundContract);
-        } else {
-            alert("No matching contract or product found.");
-        }
-    }
-
-    function populateContractDetails(contract) {
-        document.getElementById("contractName").innerText = contract.contractName;
-        document.getElementById("contractCategory").innerText = contract.category;
-        document.getElementById("accountRep").innerText = contract.accountRep;
-        document.getElementById("contractSummary").innerText = contract.contractSummary;
-        document.getElementById("expirationDate").innerText = contract.expirationDate;
-
-        // Contract Documents
-        var docList = document.getElementById("contractDocuments");
-        docList.innerHTML = ""; // Clear previous entries
-        contract.contractDocuments.forEach(doc => {
-            var li = document.createElement("li");
-            li.innerText = doc;
-            docList.appendChild(li);
+        const filtered = demoContracts.filter(contract => {
+            if (type === "contract") return contract.contractName.toLowerCase().includes(input);
+            if (type === "product") return contract.productCode.toLowerCase().includes(input);
+            if (type === "vendor") return contract.vendor.toLowerCase().includes(input);
+            return false;
         });
 
-        // Vendor contact info
-        document.getElementById("contractVendor").innerText = contract.vendor;
-        document.getElementById("contactEmail").innerText = contract.contactEmail;
-        document.getElementById("contactPhone").innerText = contract.contactPhone;
-
-        // Check if the contract is about to expire (alert if it is)
-        var expirationDate = new Date(contract.expirationDate);
-        var currentDate = new Date();
-        var daysLeft = Math.floor((expirationDate - currentDate) / (1000 * 60 * 60 * 24));
-
-        if (daysLeft <= 30) {
-            document.getElementById("contractAlerts").innerText = "Alert: Contract is about to expire in " + daysLeft + " days!";
-        } else {
-            document.getElementById("contractAlerts").innerText = "";
-        }
-
-        // Display the contract details section
-        document.getElementById("contractDetails").style.display = "block";
+        populateContractCards(filtered);
+        document.getElementById("contractDetails").style.display = "none";
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        populateContractCards();
+    });
 </script>
 
 </body>
