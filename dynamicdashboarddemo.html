@@ -166,6 +166,13 @@
         </table>
     </div>
 </div>
+    <div class="actions">
+    <a href="/record-savings.html">
+      <button class="btn btn-primary">Record Savings</button>
+    </a>
+
+    <button class="btn btn-secondary" onclick="alert('This will export to Excel when JS is added!')">Export to Excel</button>
+  </div>
 
 <script>
     const spendingData = [
@@ -256,7 +263,7 @@
     function updateSavingsChart(data) {
         const ctx = document.getElementById("savingsChart").getContext("2d");
         const savingsData = data.map(item => item.savings);
-        const labels = data.map(item => item.vendor);
+        const labels = data.map(item => item.newvendor);
 
         new Chart(ctx, {
             type: "pie",
@@ -267,7 +274,7 @@
                     data: savingsData,
                     backgroundColor: ["#BAD090", "#EBB42C", "#59A7A1"], // Soft green, yellow, and blue
                     borderColor: "#fff",
-                    borderWidth: 5
+                    borderWidth: 1
                 }]
             }
         });
