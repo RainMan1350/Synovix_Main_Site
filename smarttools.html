@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #f4f7f9;
             margin: 0;
             padding: 0;
+            color: #0C333B;
         }
 
         .wrapper {
@@ -24,67 +25,75 @@
 
         .form-container {
             background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
+            border-top: 6px solid #E55C3E;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 2rem;
-            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #0C333B;
         }
 
         label {
             font-size: 1rem;
             margin-bottom: 8px;
             display: block;
+            font-weight: 500;
         }
 
         input[type="file"],
         select {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 12px 14px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #E55C3E;
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #E55C3E;
             color: white;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 1rem;
+            font-weight: 500;
             width: 100%;
             transition: background-color 0.3s ease;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #c94e32;
         }
 
         #download {
-            background-color: #007BFF;
+            background-color: #0C333B;
             margin-top: 10px;
         }
 
         #download:hover {
-            background-color: #0056b3;
+            background-color: #082428;
         }
 
         .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group input,
-        .form-group select {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         #dashboard {
@@ -94,12 +103,13 @@
 
         .alert {
             display: none;
-            padding: 10px;
+            padding: 12px;
             margin-top: 20px;
-            background-color: #f44336;
+            background-color: #E55C3E;
             color: white;
             text-align: center;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -132,18 +142,14 @@
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Simulate uploading process
             alert('File uploaded and processing started!');
-
-            // Disable the download button initially
             document.getElementById('download').disabled = false;
             document.getElementById('alertBox').style.display = 'none';
 
-            // After file upload, redirect to another page (dynamic dashboard)
-            window.location.href = 'dynamicdashboarddemo.html'; // Assuming the user will be taken to this page
+            window.location.href = 'dynamicdashboarddemo.html';
         });
 
-        document.getElementById('download').addEventListener('click', function() {
+        document.getElementById('download').addEventListener('click', function () {
             if (document.getElementById('fileUpload').files.length === 0) {
                 document.getElementById('alertBox').style.display = 'block';
             } else {
