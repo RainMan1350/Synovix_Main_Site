@@ -322,34 +322,21 @@ function updateSavingsChart(data) {
     });
 }
 
-function updateCostBreakdownChart(data) {
-    const ctx = document.getElementById("costBreakdownChart").getContext("2d");
-    const totalSpending = data.reduce((acc, curr) => acc + curr.spending, 0);
-    const totalSavings = data.reduce((acc, curr) => acc + curr.savings, 0);
-    const remainingCost = totalSpending - totalSavings;
-
-    new Chart(ctx, {
-        type: "doughnut",
-        data: {
-            labels: ["Savings", "Remaining Cost"],
-            datasets: [{
-                label: "Cost Breakdown",
-                data: [totalSavings, remainingCost],
-                backgroundColor: ["#74C69D", "#E5989B"],
-                borderColor: "#ffffff",
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'bottom'
-                }
+    function updateCostBreakdownChart(data) {
+        const ctx = document.getElementById("costBreakdownChart").getContext("2d");
+        new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ["Labor", "Supplies", "Equipment"],
+                datasets: [{
+                    data: [40, 35, 25],
+                    backgroundColor: ["#BAD090", "#EBB42C", "#59A7A1"], // Muted colors for breakdown
+                    borderColor: "#fff",
+                    borderWidth: 1
+                }]
             }
-        }
-    });
-}
+        });
+    }
 
     updateDashboard();
 </script>
