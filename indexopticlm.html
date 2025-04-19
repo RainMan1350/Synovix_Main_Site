@@ -1,289 +1,127 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OptiCLM - Contract Management</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7f6;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1000px;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            font-weight: 600;
-            color: #343a40;
-        }
-        .search-section {
-            margin-bottom: 20px;
-        }
-        .contract-details {
-            display: none;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-            margin-top: 20px;
-        }
-        .contract-details h4, .contract-details h5 {
-            color: #343a40;
-        }
-        .contract-docs ul {
-            padding-left: 20px;
-            list-style-type: disc;
-        }
-        .btn-search {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-        }
-        .alert {
-            color: #dc3545;
-            font-weight: bold;
-        }
-        .contract-card {
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            margin-bottom: 20px;
-        }
-        .contract-card h5 {
-            font-size: 18px;
-            color: #007bff;
-        }
-        .contract-card p {
-            font-size: 14px;
-            color: #6c757d;
-        }
-        .contract-card:hover {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-        }
-        .navbar {
-            background-color: #007bff;
-            padding: 10px 20px;
-        }
-        .navbar-brand {
-            color: #fff;
-            font-size: 24px;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Procurement Optimization Tool</title>
+  <style>
+    :root {
+      --dark: #0C333B;
+      --gold: #E5C58F;
+      --coral: #E55C3E;
+      --white: #ffffff;
+      --gray: #f5f5f5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--gray);
+      color: var(--dark);
+      padding: 2rem;
+    }
+
+    header {
+      background-color: var(--dark);
+      color: var(--gold);
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: var(--white);
+    }
+
+    section {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      color: var(--coral);
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 2rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight {
+      background-color: var(--gold);
+      padding: 0.3rem 0.6rem;
+      border-radius: 6px;
+      color: var(--dark);
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: var(--dark);
+    }
+  </style>
 </head>
+
 <body>
+  <header>
+    <h1>Procurement Optimization Tool</h1>
+    <p>Make data-driven decisions to unlock hidden savings and maximize supplier value.</p>
+  </header>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand" href="#">OptiCLM</a>
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Contracts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Vendors</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">Support</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+  <section>
+    <h2>Key Features</h2>
+    <ul>
+      <li><span class="highlight">Tier Optimization Savings:</span> Automatically detect opportunities to upgrade vendor tiers based on current volume trends.</li>
+      <li><span class="highlight">Supplier Switching Savings:</span> Uncover cost-effective alternatives across your supply network with built-in substitution logic.</li>
+      <li><span class="highlight">Negotiation Insights:</span> Gain leverage with vendors by visualizing pricing outliers and rebate performance.</li>
+    </ul>
+  </section>
 
-<!-- Main Container -->
-<div class="container">
-    <h2 class="text-center">OptiCLM - Contract Lifecycle Management</h2>
+  <section>
+    <h2>How It Works</h2>
+    <ul>
+      <li>Connect your purchasing database with our tool using SQL or Excel integration.</li>
+      <li>Our algorithm classifies vendors, tiers, products, and benchmarks them in real-time.</li>
+      <li>Automated dashboards visualize cost impact, risk alerts, and forecast scenarios.</li>
+    </ul>
+  </section>
 
-    <!-- Search Bar -->
-    <div class="search-section">
-        <label for="searchInput">Search Contract, Product or Vendor:</label>
-        <input type="text" id="searchInput" class="form-control" placeholder="Enter contract name or product ID">
+  <section>
+    <h2>Built-in Intelligence</h2>
+    <ul>
+      <li>Dynamic thresholds to filter low-impact recommendations.</li>
+      <li>Scenario modeling engine for testing policy or pricing changes.</li>
+      <li>Auto-generated savings plans based on your procurement patterns.</li>
+    </ul>
+  </section>
 
-        <label for="searchType" class="mt-2">Search By:</label>
-        <select id="searchType" class="form-select">
-            <option selected>(Choose One)</option>
-            <option value="contract">Contract</option>
-            <option value="product">Product</option>
-            <option value="vendor">Vendor</option>
-        </select>
-
-        <button class="btn btn-search mt-3" onclick="searchContract()">Search</button>
-    </div>
-
-    <!-- Contract Cards (Directory) -->
-    <div id="contractCards" class="row">
-        <!-- Contract Cards will be added dynamically -->
-    </div>
-
-    <!-- Contract Details -->
-    <div id="contractDetails" class="contract-details">
-        <h4>Contract Information</h4>
-        <p><strong>Contract Name:</strong> <span id="contractName"></span></p>
-        <p><strong>Category:</strong> <span id="contractCategory"></span></p>
-        <p><strong>Account Representative:</strong> <span id="accountRep"></span></p>
-        <p><strong>Contract Summary:</strong> <span id="contractSummary"></span></p>
-        <p><strong>Expiration Date:</strong> <span id="expirationDate"></span></p>
-
-        <h5>Contract Documents</h5>
-        <div class="contract-docs">
-            <ul id="contractDocuments"></ul>
-        </div>
-
-        <h5>Alerts</h5>
-        <p id="contractAlerts" class="alert"></p>
-
-        <h5>Vendor Contact</h5>
-        <p><strong>Vendor:</strong> <span id="contractVendor"></span></p>
-        <p><strong>Contact Email:</strong> <span id="contactEmail"></span></p>
-        <p><strong>Contact Phone:</strong> <span id="contactPhone"></span></p>
-    </div>
-</div>
-
-<script>
-    const demoContracts = [
-        {
-            contractNumber: "123",
-            productCode: "abc",
-            contractName: "ABC Contract",
-            category: "Software",
-            accountRep: "John Doe",
-            contractSummary: "This contract governs the purchase of ABC software.",
-            expirationDate: "2025-03-15",
-            contractDocuments: ["Contract Document 1", "Contract Document 2"],
-            vendor: "ABC Corp.",
-            contactEmail: "johndoe@abccorp.com",
-            contactPhone: "123-456-7890",
-            contractAlerts: ""
-        },
-        {
-            contractNumber: "456",
-            productCode: "xyz",
-            contractName: "XYZ Contract",
-            category: "Hardware",
-            accountRep: "Jane Smith",
-            contractSummary: "This contract covers the procurement of XYZ hardware components.",
-            expirationDate: "2025-06-30",
-            contractDocuments: ["XYZ Agreement", "Warranty Details"],
-            vendor: "XYZ Technologies",
-            contactEmail: "janesmith@xyztech.com",
-            contactPhone: "987-654-3210",
-            contractAlerts: ""
-        },
-        {
-            contractNumber: "789",
-            productCode: "def",
-            contractName: "DEF Contract",
-            category: "Consulting",
-            accountRep: "Michael Johnson",
-            contractSummary: "Consulting services agreement with DEF Corp.",
-            expirationDate: "2024-12-01",
-            contractDocuments: ["DEF Consulting Terms", "Service Agreement"],
-            vendor: "DEF Corp.",
-            contactEmail: "michael@defcorp.com",
-            contactPhone: "555-123-4567",
-            contractAlerts: ""
-        },
-        {
-            contractNumber: "101",
-            productCode: "ghi",
-            contractName: "GHI Contract",
-            category: "Licensing",
-            accountRep: "Emily Davis",
-            contractSummary: "Software licensing contract for GHI applications.",
-            expirationDate: "2026-01-20",
-            contractDocuments: ["GHI License Terms", "Renewal Options"],
-            vendor: "GHI Solutions",
-            contactEmail: "emily@ghisolutions.com",
-            contactPhone: "111-222-3333",
-            contractAlerts: ""
-        }
-    ];
-
-    function populateContractCards(contracts = demoContracts) {
-        const container = document.getElementById("contractCards");
-        container.innerHTML = "";
-
-        if (contracts.length === 0) {
-            container.innerHTML = "<p>No contracts found.</p>";
-            return;
-        }
-
-        contracts.forEach(contract => {
-            const card = document.createElement("div");
-            card.classList.add("col-md-4");
-            card.innerHTML = `
-                <div class="contract-card" onclick='populateContractDetails(${JSON.stringify(contract)})'>
-                    <h5>${contract.contractName}</h5>
-                    <p>${contract.category} Agreement</p>
-                    <p>Expires on ${contract.expirationDate}</p>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function populateContractDetails(contract) {
-        document.getElementById("contractName").textContent = contract.contractName;
-        document.getElementById("contractCategory").textContent = contract.category;
-        document.getElementById("accountRep").textContent = contract.accountRep;
-        document.getElementById("contractSummary").textContent = contract.contractSummary;
-        document.getElementById("expirationDate").textContent = contract.expirationDate;
-        document.getElementById("contractVendor").textContent = contract.vendor;
-        document.getElementById("contactEmail").textContent = contract.contactEmail;
-        document.getElementById("contactPhone").textContent = contract.contactPhone;
-        document.getElementById("contractAlerts").textContent = contract.contractAlerts || "No alerts.";
-
-        const docList = document.getElementById("contractDocuments");
-        docList.innerHTML = "";
-        contract.contractDocuments.forEach(doc => {
-            const li = document.createElement("li");
-            li.textContent = doc;
-            docList.appendChild(li);
-        });
-
-        document.getElementById("contractDetails").style.display = "block";
-        window.scrollTo({ top: document.getElementById("contractDetails").offsetTop, behavior: 'smooth' });
-    }
-
-    function searchContract() {
-        const input = document.getElementById("searchInput").value.toLowerCase();
-        const type = document.getElementById("searchType").value;
-
-        if (!input || type === "(Choose One)") {
-            alert("Please enter a search term and select a search type.");
-            return;
-        }
-
-        const filtered = demoContracts.filter(contract => {
-            if (type === "contract") return contract.contractName.toLowerCase().includes(input);
-            if (type === "product") return contract.productCode.toLowerCase().includes(input);
-            if (type === "vendor") return contract.vendor.toLowerCase().includes(input);
-            return false;
-        });
-
-        populateContractCards(filtered);
-        document.getElementById("contractDetails").style.display = "none";
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        populateContractCards();
-    });
-</script>
-
+  <footer>
+    &copy; 2025 PrecisionSupply | Empowering smarter healthcare supply chains
+  </footer>
 </body>
+
 </html>
