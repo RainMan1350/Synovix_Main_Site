@@ -229,21 +229,31 @@
     }
 
     function populateTable(data) {
-        const tableBody = document.getElementById("dataTableBody");
-        tableBody.innerHTML = "";
-        data.forEach(item => {
-            const row = `<tr>
-                            <td>${item.date}</td>
-                            <td>${item.currentvendor}</td>
-                            <td>${item.newvendor}</td>
-                            <td>${item.conversionordirect}</td>
-                            <td>${item.spending}</td>
-                            <td>${item.savings}</td>
-                            <td>${item.contract}</td>
-                        </tr>`;
-            tableBody.innerHTML += row;
-        });
-    }
+const tableBody = document.getElementById("spending-table-body");
+
+spendingData.forEach(item => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+        <td>${item.date}</td>
+        <td>${item.currentvendor}</td>
+        <td>${item.newvendor}</td>
+        <td>${item.conversionordirect}</td>
+        <td>$${item.spending.toLocaleString()}</td>
+        <td>$${item.savings.toLocaleString()}</td>
+    `;
+
+    // Add contract link cell manually below
+    const contractCell = document.createElement("td");
+    const contractLink = document.createElement("a");
+    contractLink.href = "idexopticlm.html";
+    contractLink.textContent = item.contract;
+    contractCell.appendChild(contractLink);
+
+    row.appendChild(contractCell); //  Append the final <td> to the row
+
+    tableBody.appendChild(row); //  Add the row to your table
+});
 
     function updateCharts(data) {
         updateSpendingChart(data);
