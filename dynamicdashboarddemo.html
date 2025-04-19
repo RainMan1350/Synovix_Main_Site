@@ -282,41 +282,64 @@
         });
     }
 
-    function updateSavingsChart(data) {
-        const ctx = document.getElementById("savingsChart").getContext("2d");
-        const savingsData = data.map(item => item.savings);
-        const labels = data.map(item => item.newvendor);
+function updateSavingsChart(data) {
+    const ctx = document.getElementById("savingsChart").getContext("2d");
+    const savingsData = data.map(item => item.savings);
+    const labels = data.map(item => item.newvendor);
 
-        new Chart(ctx, {
-            type: "pie",
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Savings Potential",
-                    data: savingsData,
-                    backgroundColor: ["#BAD090", "#EBB42C", "#59A7A1"], // Soft green, yellow, and blue
-                    borderColor: "#fff",
-                    borderWidth: 1
-                }]
+    new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Savings Potential",
+                data: savingsData,
+                backgroundColor: [
+                    "#BADFDB", "#FEC5BB", "#FFB4A2", "#D0F4DE", "#A9DEF9"
+                ],
+                borderColor: "#ffffff",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'right'
+                }
             }
-        });
-    }
+        }
+    });
+}
 
-    function updateCostBreakdownChart(data) {
-        const ctx = document.getElementById("costBreakdownChart").getContext("2d");
-        new Chart(ctx, {
-            type: "doughnut",
-            data: {
-                labels: ["Labor", "Supplies", "Equipment"],
-                datasets: [{
-                    data: [40, 35, 25],
-                    backgroundColor: ["#BAD090", "#EBB42C", "#59A7A1"], // Muted colors for breakdown
-                    borderColor: "#fff",
-                    borderWidth: 1
-                }]
+function updateCostBreakdownChart(data) {
+    const ctx = document.getElementById("costBreakdownChart").getContext("2d");
+    const totalSpending = data.reduce((acc, curr) => acc + curr.spending, 0);
+    const totalSavings = data.reduce((acc, curr) => acc + curr.savings, 0);
+    const remainingCost = totalSpending - totalSavings;
+
+    new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: ["Savings", "Remaining Cost"],
+            datasets: [{
+                label: "Cost Breakdown",
+                data: [totalSavings, remainingCost],
+                backgroundColor: ["#74C69D", "#E5989B"],
+                borderColor: "#ffffff",
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
             }
-        });
-    }
+        }
+    });
+}
 
     updateDashboard();
 </script>
