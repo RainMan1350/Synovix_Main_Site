@@ -7,11 +7,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #6e7bff, #4f77ff);
+            font-family: 'Arial', sans-serif;
+            background: #f4f7fb;
             margin: 0;
             padding: 0;
-            color: #fff;
+            color: #333;
         }
 
         .dashboard-container {
@@ -54,18 +54,19 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 30px;
             width: 100%;
         }
 
         .chart-container {
             text-align: center;
-            background: #f9f9f9;
+            background: #ffffff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             height: 320px;
             max-width: 100%;
+            border: 1px solid #e0e0e0;
         }
 
         canvas {
@@ -93,12 +94,25 @@
             background: #4f77ff;
             color: #fff;
         }
+
+        /* Styling for smaller screen responsiveness */
+        @media (max-width: 768px) {
+            .charts-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .filter-section {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     </style>
 </head>
 <body>
 <div class="dashboard-container">
     <div class="dashboard">
-        <h2>Smart Tools Dashboard</h2>
+        <h2 style="text-align: center; color: #4f77ff;">Smart Tools Dashboard</h2>
 
         <div class="filter-section">
             <label for="toolFilter">Select Tool:</label>
@@ -202,7 +216,13 @@
             type: "line",
             data: {
                 labels: labels,
-                datasets: [{ label: "Spending Over Time", data: values, borderColor: "#5C6BC0", fill: false }]
+                datasets: [{
+                    label: "Spending Over Time",
+                    data: values,
+                    borderColor: "#9E9E9E", // Muted color
+                    fill: false,
+                    borderWidth: 2
+                }]
             }
         });
     }
@@ -216,7 +236,13 @@
             type: "bar",
             data: {
                 labels: Object.keys(vendorTotals),
-                datasets: [{ label: "Spending by Vendor", data: Object.values(vendorTotals), backgroundColor: "#7E57C2" }]
+                datasets: [{
+                    label: "Spending by Vendor",
+                    data: Object.values(vendorTotals),
+                    backgroundColor: "#B0BEC5", // Soft muted blue
+                    borderColor: "#90A4AE",
+                    borderWidth: 1
+                }]
             }
         });
     }
@@ -230,7 +256,13 @@
             type: "pie",
             data: {
                 labels: labels,
-                datasets: [{ label: "Savings Potential", data: savingsData, backgroundColor: ["#66BB6A", "#FF7043", "#42A5F5"] }]
+                datasets: [{
+                    label: "Savings Potential",
+                    data: savingsData,
+                    backgroundColor: ["#A5D6A7", "#FFCC80", "#B3E5FC"], // Soft green, orange, and blue
+                    borderColor: "#fff",
+                    borderWidth: 1
+                }]
             }
         });
     }
@@ -241,7 +273,12 @@
             type: "doughnut",
             data: {
                 labels: ["Labor", "Supplies", "Equipment"],
-                datasets: [{ data: [40, 35, 25], backgroundColor: ["#FFEB3B", "#4CAF50", "#1976D2"] }]
+                datasets: [{
+                    data: [40, 35, 25],
+                    backgroundColor: ["#B3E5FC", "#FFCC80", "#A5D6A7"], // Muted colors for breakdown
+                    borderColor: "#fff",
+                    borderWidth: 1
+                }]
             }
         });
     }
