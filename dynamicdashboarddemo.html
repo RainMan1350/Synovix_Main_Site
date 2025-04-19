@@ -195,9 +195,13 @@
         data.forEach(item => {
             const row = `<tr>
                             <td>${item.date}</td>
+                            <td>${item.currentvendor}</td>
+                            <td>${item.newvendor}</td>
+                            <td>${item.conversionordirect}</td>
                             <td>${item.vendor}</td>
                             <td>${item.spending}</td>
                             <td>${item.savings}</td>
+                            <td>${item.contract}</td>
                         </tr>`;
             tableBody.innerHTML += row;
         });
