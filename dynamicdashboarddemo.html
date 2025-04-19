@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #dbe2ef, #a3bffa);
+      background: linear-gradient(135deg, #e6ecf4, #cdd5df);
       margin: 0;
       padding: 0;
       color: #333;
@@ -45,9 +45,9 @@
     .filter-section button {
       padding: 10px;
       border-radius: 5px;
-      border: 1px solid #ddd;
+      border: 1px solid #ccc;
       font-size: 1rem;
-      background-color: #f0f4f7;
+      background-color: #f2f4f5;
     }
 
     .charts-container {
@@ -59,10 +59,10 @@
 
     .chart-container {
       text-align: center;
-      background: #f8f8f8;
+      background: #fdfdfd;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
     }
 
     canvas {
@@ -74,20 +74,21 @@
       margin-top: 30px;
       width: 100%;
       border-collapse: collapse;
-      background: #f9f9f9;
+      background: #fdfdfd;
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08);
     }
 
-    .data-table th, .data-table td {
+    .data-table th,
+    .data-table td {
       padding: 10px;
       text-align: left;
       border-bottom: 1px solid #ddd;
     }
 
     .data-table th {
-      background: #a3bffa;
+      background: #a0acc0;
       color: #fff;
     }
   </style>
@@ -135,12 +136,12 @@
 
     <table class="data-table">
       <thead>
-        <tr>
-          <th>Date</th>
-          <th>Vendor</th>
-          <th>Spending ($)</th>
-          <th>Savings ($)</th>
-        </tr>
+      <tr>
+        <th>Date</th>
+        <th>Vendor</th>
+        <th>Spending ($)</th>
+        <th>Savings ($)</th>
+      </tr>
       </thead>
       <tbody id="dataTableBody"></tbody>
     </table>
@@ -155,6 +156,16 @@
     { date: "2025-03-15", vendor: "Vendor A", spending: 14000, savings: 1700 },
     { date: "2025-03-20", vendor: "Vendor B", spending: 16000, savings: 2200 }
   ];
+
+  const palette = {
+    blueGray: "#4B5563",
+    mutedTeal: "#5A837A",
+    mutedGold: "#D6A84B",
+    dustyRose: "#C97C71",
+    sage: "#B5CDA3",
+    steel: "#708090",
+    charcoal: "#36454F"
+  };
 
   function updateDashboard() {
     populateTable(spendingData);
@@ -202,13 +213,14 @@
         datasets: [{
           label: "Spending Over Time",
           data: values,
-          borderColor: "#5c6784",
-          backgroundColor: "rgba(92, 103, 132, 0.1)",
-          fill: true,
-          tension: 0.3
+          borderColor: palette.steel,
+          backgroundColor: "transparent"
         }]
       },
-      options: { responsive: true }
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
     });
   }
 
@@ -226,17 +238,20 @@
         datasets: [{
           label: "Spending by Vendor",
           data: Object.values(vendorTotals),
-          backgroundColor: "#879bb5"
+          backgroundColor: [palette.mutedTeal, palette.dustyRose, palette.sage]
         }]
       },
-      options: { responsive: true }
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
     });
   }
 
   function updateSavingsChart(data) {
     const ctx = document.getElementById("savingsChart").getContext("2d");
-    const savingsData = data.map(item => item.savings);
     const labels = data.map(item => item.vendor);
+    const values = data.map(item => item.savings);
 
     new Chart(ctx, {
       type: "pie",
@@ -244,26 +259,33 @@
         labels: labels,
         datasets: [{
           label: "Savings Potential",
-          data: savingsData,
-          backgroundColor: ["#a5b1c2", "#bcccdc", "#d6dbdf"]
+          data: values,
+          backgroundColor: [palette.mutedGold, palette.mutedTeal, palette.dustyRose]
         }]
       },
-      options: { responsive: true }
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
     });
   }
 
   function updateCostBreakdownChart(data) {
     const ctx = document.getElementById("costBreakdownChart").getContext("2d");
+
     new Chart(ctx, {
       type: "doughnut",
       data: {
         labels: ["Labor", "Supplies", "Equipment"],
         datasets: [{
           data: [40, 35, 25],
-          backgroundColor: ["#adb5bd", "#ced4da", "#dee2e6"]
+          backgroundColor: [palette.sage, palette.steel, palette.mutedGold]
         }]
       },
-      options: { responsive: true }
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
     });
   }
 
