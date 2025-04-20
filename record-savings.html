@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Savings Dashboard</title>
 
-  <!-- Link CSS relative to this page's location -->
-  <link rel="stylesheet" href="../assets/css/main.css" />
+  <!-- Link CSS: Adjust path if needed -->
+  <link rel="stylesheet" href="assets/css/main.css" onerror="this.onerror=null;this.remove();" />
 
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -77,16 +77,16 @@
     // Calculate total and projected savings
     const totalSavings = savingsData.reduce((sum, entry) => sum + entry.savings, 0);
     const savingsGoal = 12000;
-    const currentMonth = new Date().getMonth() + 1; // Jan = 0
+    const currentMonth = new Date().getMonth() + 1;
     const projectedAnnualSavings = (totalSavings / currentMonth) * 12;
     const onTrack = projectedAnnualSavings >= savingsGoal;
 
-    // Chart 1: YTD Savings vs Annual Goal
+    // Chart 1: YTD vs Goal
     const ctx1 = document.getElementById('savingsGoalChart').getContext('2d');
     new Chart(ctx1, {
       type: 'bar',
       data: {
-        labels: ['Year-to-Date Savings', 'Annual Goal'],
+        labels: ['YTD Savings', 'Annual Goal'],
         datasets: [{
           label: 'USD',
           data: [totalSavings, savingsGoal],
@@ -104,12 +104,12 @@
       }
     });
 
-    // Chart 2: Projected Annual Savings
+    // Chart 2: Projection
     const ctx2 = document.getElementById('onTrackChart').getContext('2d');
     new Chart(ctx2, {
       type: 'bar',
       data: {
-        labels: ['Projected Savings', 'Goal'],
+        labels: ['Projected', 'Goal'],
         datasets: [{
           label: 'Projection',
           data: [projectedAnnualSavings, savingsGoal],
@@ -129,7 +129,7 @@
       }
     });
 
-    // Populate the savings table
+    // Populate Table
     const tableBody = document.getElementById('savings-table-body');
     savingsData.forEach(entry => {
       const row = document.createElement('tr');
