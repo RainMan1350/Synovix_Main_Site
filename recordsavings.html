@@ -15,18 +15,23 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      background-color: #E5C58F;
     }
 
     .chart-container {
       width: 100%;
       max-width: 800px;
       margin: 40px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 40px;
+      background-color: white;
     }
 
     th, td {
@@ -56,7 +61,7 @@
     <thead>
       <tr>
         <th>Date</th>
-        <th>Vendor</th>
+        <th>New Vendor</th>
         <th>Savings</th>
       </tr>
     </thead>
@@ -68,10 +73,10 @@
   <script>
     // Sample savings data
     const savingsData = [
-      { date: "2025-01-15", vendor: "Vendor A", savings: 1000 },
-      { date: "2025-02-10", vendor: "Vendor B", savings: 1200 },
-      { date: "2025-03-12", vendor: "Vendor C", savings: 1100 },
-      { date: "2025-04-05", vendor: "Vendor A", savings: 1300 },
+      { date: "2025-01-15", vendor: "Vendor X", savings: 1000 },
+      { date: "2025-02-10", vendor: "Vendor Y", savings: 1200 },
+      { date: "2025-03-12", vendor: "Vendor Z", savings: 1100 },
+      { date: "2025-04-05", vendor: "Vendor W", savings: 1300 },
     ];
 
     // Calculate total and projected savings
@@ -80,6 +85,37 @@
     const currentMonth = new Date().getMonth() + 1;
     const projectedAnnualSavings = (totalSavings / currentMonth) * 12;
     const onTrack = projectedAnnualSavings >= savingsGoal;
+
+    const whiteBackgroundOptions = {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true
+        }
+      },
+      layout: {
+        padding: 10
+      },
+      scales: {
+        x: {
+          grid: {
+            color: '#e0e0e0'
+          },
+          ticks: {
+            color: '#000'
+          }
+        },
+        y: {
+          grid: {
+            color: '#e0e0e0'
+          },
+          ticks: {
+            color: '#000'
+          }
+        }
+      },
+      backgroundColor: '#ffffff'
+    };
 
     // Chart 1: YTD vs Goal
     const ctx1 = document.getElementById('savingsGoalChart').getContext('2d');
@@ -94,8 +130,9 @@
         }]
       },
       options: {
-        responsive: true,
+        ...whiteBackgroundOptions,
         plugins: {
+          ...whiteBackgroundOptions.plugins,
           title: {
             display: true,
             text: 'YTD Savings vs Annual Goal'
@@ -117,8 +154,9 @@
         }]
       },
       options: {
-        responsive: true,
+        ...whiteBackgroundOptions,
         plugins: {
+          ...whiteBackgroundOptions.plugins,
           title: {
             display: true,
             text: onTrack
