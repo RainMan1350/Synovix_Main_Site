@@ -296,7 +296,7 @@ function updateSavingsChart(data) {
     const values = data.map(item => item.savings);
 
     new Chart(ctx, {
-        type: "line",
+        type: "pie",
         data: {
             labels: labels,
             datasets: [{
@@ -320,19 +320,32 @@ function updateCostBreakdownChart(data) {
     const totalSavings = data.reduce((sum, item) => sum + item.savings, 0);
     const netCost = totalSpending - totalSavings;
 
+   function updateSavingsChart(data) {
+    const ctx = document.getElementById("savingsChart").getContext("2d");
+    const savingsData = data.map(item => item.savings);
+    const labels = data.map(item => item.newvendor);
+
     new Chart(ctx, {
-        type: "doughnut",
+        type: "pie",
         data: {
-            labels: ["Net Cost", "Savings"],
+            labels: labels,
             datasets: [{
-                data: [netCost, totalSavings],
-                backgroundColor: ["#F06292", "#4DB6AC"],
+                label: "Savings Potential",
+                data: savingsData,
+                backgroundColor: [
+                    "#BADFDB", "#FEC5BB", "#FFB4A2", "#D0F4DE", "#A9DEF9"
+                ],
+                borderColor: "#ffffff",
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false
+            plugins: {
+                legend: {
+                    position: 'right'
+                }
+            }
         }
     });
 }
