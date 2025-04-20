@@ -230,7 +230,8 @@
         const tableBody = document.getElementById("dataTableBody");
         tableBody.innerHTML = "";
         data.forEach(item => {
-            const row = `<tr>
+            const row = `
+                <tr>
                             <td>${item.date}</td>
                             <td>${item.currentvendor}</td>
                             <td>${item.newvendor}</td>
@@ -238,7 +239,8 @@
                             <td>${item.spending}</td>
                             <td>${item.savings}</td>
                             <td>${item.contract}</td>
-                        </tr>`;
+                        </tr>
+                        `;
             tableBody.innerHTML += row;
         });
     }
@@ -250,25 +252,34 @@
         updateCostBreakdownChart(data);
     }
 
-    function updateSpendingChart(data) {
-        const ctx = document.getElementById("spendingChart").getContext("2d");
-        const labels = data.map(item => item.date);
-        const values = data.map(item => item.spending);
+function updateSpendingChart(data) {
+    const ctx = document.getElementById("spendingChart").getContext("2d");
+    const labels = data.map(item => item.date);
+    const values = data.map(item => item.spending);
 
-        new Chart(ctx, {
-            type: "line",
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: "Spending Over Time",
-                    data: values,
-                    borderColor: "#48C9B0", // Muted teal color
-                    fill: false,
-                    borderWidth: 2
-                }]
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Spending Over Time",
+                data: values,
+                borderColor: "#48C9B0",
+                backgroundColor: "rgba(72, 201, 176, 0.2)",
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
-        });
-    }
+        }
+    });
+}
 
     function updateVendorChart(data) {
         const ctx = document.getElementById("vendorChart").getContext("2d");
