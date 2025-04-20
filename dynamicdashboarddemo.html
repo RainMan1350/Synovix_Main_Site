@@ -292,49 +292,50 @@
 
 function updateSavingsChart(data) {
     const ctx = document.getElementById("savingsChart").getContext("2d");
-    const savingsData = data.map(item => item.savings);
-    const labels = data.map(item => item.newvendor);
+    const labels = data.map(item => item.date);
+    const values = data.map(item => item.savings);
 
     new Chart(ctx, {
-        type: "pie",
+        type: "line",
         data: {
             labels: labels,
             datasets: [{
-                label: "Savings Potential",
-                data: savingsData,
-                backgroundColor: [
-                    "#BADFDB", "#FEC5BB", "#FFB4A2", "#D0F4DE", "#A9DEF9"
-                ],
-                borderColor: "#ffffff",
+                label: "Savings Over Time",
+                data: values,
+                borderColor: "#6A1B9A", // Rich purple
+                fill: false,
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+}
+
+function updateCostBreakdownChart(data) {
+    const ctx = document.getElementById("costBreakdownChart").getContext("2d");
+    const totalSpending = data.reduce((sum, item) => sum + item.spending, 0);
+    const totalSavings = data.reduce((sum, item) => sum + item.savings, 0);
+    const netCost = totalSpending - totalSavings;
+
+    new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: ["Net Cost", "Savings"],
+            datasets: [{
+                data: [netCost, totalSavings],
+                backgroundColor: ["#F06292", "#4DB6AC"],
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right'
-                }
-            }
+            maintainAspectRatio: false
         }
     });
 }
-
-    function updateCostBreakdownChart(data) {
-        const ctx = document.getElementById("costBreakdownChart").getContext("2d");
-        new Chart(ctx, {
-            type: "doughnut",
-            data: {
-                labels: ["Labor", "Supplies", "Equipment"],
-                datasets: [{
-                    data: [40, 35, 25],
-                    backgroundColor: ["#BAD090", "#EBB42C", "#59A7A1"], // Muted colors for breakdown
-                    borderColor: "#fff",
-                    borderWidth: 1
-                }]
-            }
-        });
-    }
 
     updateDashboard();
 </script>
