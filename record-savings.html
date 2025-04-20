@@ -4,32 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Savings Dashboard</title>
-  <link rel="stylesheet" href="assets/css/main.css">
+
+  <!-- Link CSS relative to this page's location -->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
     }
+
     .chart-container {
       width: 100%;
       max-width: 800px;
       margin: 40px auto;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 40px;
     }
+
     th, td {
       border: 1px solid #ccc;
       padding: 10px;
       text-align: center;
     }
+
     th {
       background-color: #f4f4f4;
     }
   </style>
 </head>
+
 <body>
   <h1>Savings Dashboard</h1>
 
@@ -55,6 +66,7 @@
   </table>
 
   <script>
+    // Sample savings data
     const savingsData = [
       { date: "2025-01-15", vendor: "Vendor A", savings: 1000 },
       { date: "2025-02-10", vendor: "Vendor B", savings: 1200 },
@@ -62,13 +74,14 @@
       { date: "2025-04-05", vendor: "Vendor A", savings: 1300 },
     ];
 
+    // Calculate total and projected savings
     const totalSavings = savingsData.reduce((sum, entry) => sum + entry.savings, 0);
     const savingsGoal = 12000;
-    const currentMonth = new Date().getMonth() + 1; // Jan = 0, so +1
+    const currentMonth = new Date().getMonth() + 1; // Jan = 0
     const projectedAnnualSavings = (totalSavings / currentMonth) * 12;
     const onTrack = projectedAnnualSavings >= savingsGoal;
 
-    // Bar chart: Year-to-date vs Goal
+    // Chart 1: YTD Savings vs Annual Goal
     const ctx1 = document.getElementById('savingsGoalChart').getContext('2d');
     new Chart(ctx1, {
       type: 'bar',
@@ -91,7 +104,7 @@
       }
     });
 
-    // On track status chart
+    // Chart 2: Projected Annual Savings
     const ctx2 = document.getElementById('onTrackChart').getContext('2d');
     new Chart(ctx2, {
       type: 'bar',
@@ -108,13 +121,15 @@
         plugins: {
           title: {
             display: true,
-            text: onTrack ? 'You Are On Track To Hit Your Goal 🎯' : 'You Are NOT On Track To Hit Your Goal ⚠️'
+            text: onTrack
+              ? 'You Are On Track To Hit Your Goal 🎯'
+              : 'You Are NOT On Track To Hit Your Goal ⚠️'
           }
         }
       }
     });
 
-    // Fill savings table
+    // Populate the savings table
     const tableBody = document.getElementById('savings-table-body');
     savingsData.forEach(entry => {
       const row = document.createElement('tr');
