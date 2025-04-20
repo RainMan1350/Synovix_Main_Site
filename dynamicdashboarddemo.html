@@ -292,36 +292,6 @@
 
 function updateSavingsChart(data) {
     const ctx = document.getElementById("savingsChart").getContext("2d");
-    const labels = data.map(item => item.date);
-    const values = data.map(item => item.savings);
-
-    new Chart(ctx, {
-        type: "pie",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: "Savings Over Time",
-                data: values,
-                borderColor: "#6A1B9A", // Rich purple
-                fill: false,
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
-}
-
-function updateCostBreakdownChart(data) {
-    const ctx = document.getElementById("costBreakdownChart").getContext("2d");
-    const totalSpending = data.reduce((sum, item) => sum + item.spending, 0);
-    const totalSavings = data.reduce((sum, item) => sum + item.savings, 0);
-    const netCost = totalSpending - totalSavings;
-
-   function updateSavingsChart(data) {
-    const ctx = document.getElementById("savingsChart").getContext("2d");
     const savingsData = data.map(item => item.savings);
     const labels = data.map(item => item.newvendor);
 
@@ -349,6 +319,22 @@ function updateCostBreakdownChart(data) {
         }
     });
 }
+
+    function updateCostBreakdownChart(data) {
+        const ctx = document.getElementById("costBreakdownChart").getContext("2d");
+        new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ["Labor", "Supplies", "Equipment"],
+                datasets: [{
+                    data: [40, 35, 25],
+                    backgroundColor: ["#BAD090", "#EBB42C", "#59A7A1"], // Muted colors for breakdown
+                    borderColor: "#fff",
+                    borderWidth: 1
+                }]
+            }
+        });
+    }
 
     updateDashboard();
 </script>
